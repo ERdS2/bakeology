@@ -12,9 +12,10 @@ import {Component, Input} from "@angular/core";
                            [src]="''"/>
                   </div>
 
-                  <ul class="recipe-card-ingredient-wrapper" *ngFor="let item of ingredients | keyvalue">
-                     <li class="recipe-ingredient-amount"> {{item.value | json }} </li>
-                     <li class="recipe-ingredient-name"> {{ item.key }} </li>
+                  <ul class="recipe-card-ingredient-wrapper" *ngFor="let item of ingredients">
+                     <li class="recipe-ingredient-amount"> {{item.amount}} </li>
+                     <li class="recipe-ingredient-unit"> {{ item.unit }} </li>
+                     <li class="recipe-ingredient-name"> {{ item.name }} </li>
                   </ul>
                 </div>
             </ng-container>
@@ -36,7 +37,6 @@ export class RecipeCardComponent {
     return this._recipe;
   }
   public get ingredients() {
-    console.warn(this._recipe.ingredients)
     return this._recipe.ingredients;
   }
 }
