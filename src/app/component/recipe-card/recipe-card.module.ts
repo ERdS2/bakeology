@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RecipeCardComponent} from "./recipe-card";
+import {RecipeCardComponent} from "./recipe-card.coponent";
 
 
 

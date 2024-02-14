@@ -37,8 +37,10 @@
 
   .header-logo-container{
     margin: 1rem auto;
-    background-color: deeppink;
     width: 40px;
     height: 40px;
+    .header-container-cake-icon{
+      width: 100%;
+    }
   }
 }

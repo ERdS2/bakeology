@@ -1,10 +1,12 @@
-import { Component } from "@angular/core";
+import {Component} from "@angular/core";
+import {menuConfig} from "../../app.config";
+import {MenuItem} from "../menu/menu.model";
 @Component({
   selector: "b-header",
   template: `
         <div class="header-container">
             <div class="header-logo-container">
-
+                <img class="header-container-cake-icon" id="cake-icon" [src]="'assets/icons/cake.svg'">
             </div>
 
             <div class="header-search-container">
@@ -15,12 +17,18 @@ import { Component } from "@angular/core";
             </div>
 
             <div class="header-menu-container">
-                <b-menu></b-menu>
+                <header-menu [menuItemList]="menuItemList"></header-menu>
             </div>
 
         </div>
     `
 })
 export class HeaderComponent {
+  protected _menuItemList: Array<MenuItem>;
+  constructor()
+  {this._menuItemList = menuConfig.menuItemList}
 
+public get menuItemList(): Array<MenuItem> {
+  return this._menuItemList;
+}
 }
