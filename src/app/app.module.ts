@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 import {MainPageModule} from "./component/mainpage/main-page.module";
 import {StoreModule} from "@ngrx/store";
 import { HttpClientModule} from "@angular/common/http";
-import {MenuConfigToken} from "./component/menu/menu.model";
+import {MenuConfigToken} from "./component/menu/model/menu.model";
 import {menuConfig} from "./app.config";
-
+import {NgrxLoggerModule} from "./core/ngrxlogger/ngrx-logger.module";
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import {menuConfig} from "./app.config";
     BrowserModule,
     AppRoutingModule,
     MainPageModule,
+    NgrxLoggerModule,
     HttpClientModule,
     StoreModule.forRoot({}, {}),
   ],
