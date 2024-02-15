@@ -1,4 +1,4 @@
-import {MenuConfig, MenuItem} from "./component/menu/menu.model";
+import {MenuConfig, MenuItem} from "./component/menu/model/menu.model";
 
 const menuItemList: MenuItem[] = [
   {
@@ -10,6 +10,15 @@ const menuItemList: MenuItem[] = [
   {
     titleKey: "tuile",
   }
+  // {
+  //   titleKey: "header.menu.mousse.title",
+  // },
+  // {
+  //   titleKey: "header.menu.sable.title",
+  // },
+  // {
+  //   titleKey: "header.menu.tuile.title",
+  // }
 ];
 
 export const menuConfig: MenuConfig = {

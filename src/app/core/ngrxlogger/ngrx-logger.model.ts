@@ -239,32 +239,23 @@ export const storeLogger = (opts: LoggerOptions = {}) => (
 };
 
 export interface LoggerOptions {
-  /**
-   * "log" | "console" | "warn" | "error" | "info". Default: "log"
-   */
-  level?: any;
-  /**
-   * Should log group be collapsed? default: false
-   */
-  collapsed?: boolean;
-  /**
-   * Print duration with action? default: true
-   */
-  duration?: boolean;
-  /**
-   * Print timestamp with action? default: true
-   */
-  timestamp?: boolean;
-  filter?: LoggerFilterOption;
-  /**
-   * Transform state before print default: state => state
-   */
-  stateTransformer?: (state: Object) => Object;
-  /**
-   * Transform action before print default: actn => actn
-   */
-  actionTransformer?: (actn: Object) => Object;
-  colors?: LoggerColorsOption;
+  level? : 'log' | 'console' | 'warn' | 'error' | 'info'; //default log
+  collapsed? : boolean; //Should log group be collapsed? default: false
+  duration? : boolean; //Print duration with action? default: true
+  timestamp? : boolean; //Print timestamp with action? default: true
+  filter?: {
+    whitelist?: string[], // Only print actions included in this list - has priority over blacklist
+    blacklist?: string[] // Only print actions that are NOT included in this list
+  }
+  stateTransformer? : (state : Object) => Object; //Transform state before print default: state => state
+  actionTransformer? : (actn : Object) => Object; //Transform action before print default: actn => actn
+  colors? : {
+    title: (action : Object) => string;
+    prevState: (prevState : Object) => string;
+    action: (action: Object) => string;
+    nextState: (nextState : Object) => string;
+    error: (error: any, prevState: Object) => string;
+  }
 }
 
 export interface LoggerFilterOption {

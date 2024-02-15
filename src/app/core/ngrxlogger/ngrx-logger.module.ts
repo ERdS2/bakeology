@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {storeLogger, LoggerOptions, LoggerFilterOption, LoggerColorsOption} from "./ngrx-logger.model";
+import { LoggerOptions, LoggerFilterOption, LoggerColorsOption} from "./ngrx-logger.model";
 
 @NgModule({
     imports: [
@@ -12,7 +12,6 @@ class NgrxLoggerModule {
 
 export {
     NgrxLoggerModule,
-    storeLogger,
     LoggerOptions,
     LoggerFilterOption,
     LoggerColorsOption
