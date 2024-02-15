@@ -1,12 +1,10 @@
-import {Component, Inject, OnDestroy, OnInit} from "@angular/core";
+import {Component, Inject, OnDestroy} from "@angular/core";
 import {Subscription} from "rxjs";
 import {Recipe} from "../../../../mock/backend-api/model/recipe.model";
 import {CommonUtils} from "../../core/utils/common.utils";
-import {requestRecipeList} from "../../../../mock/backend-api/data/data";
 import {MainPageActionFactory, MainPageActionFactoryToken} from "./action/main-page.action-factory";
 import {Store} from "@ngrx/store";
 import {RecipeListState, selectRecipeListState} from "./model/recipeList.state.model";
-import {GetRecipeListRequest} from "../../../../mock/backend-api/model/getRecipeListRequest";
 
 
 @Component({
@@ -14,7 +12,9 @@ import {GetRecipeListRequest} from "../../../../mock/backend-api/model/getRecipe
     <div class="main-page-container">
 
       <header class="main-header">
-        <b-header></b-header>
+        <b-header
+          (menuItemSelected)="onMenuItemSelected($event)"
+        ></b-header>
       </header>
 
       <main class="main-content-container" *ngFor="let recipe of recipeList">
@@ -41,7 +41,12 @@ export class MainPageComponent implements OnDestroy {
       }
     });
   }
-
+  public onMenuItemSelected(titleKey): void {
+    const request = {
+      recipeType: titleKey
+    }
+    this._mainPageActionFactory.getRecipeList(request).subscribe()
+  }
   public get recipeList(): Array<Recipe> {
     return this._recipeList;
   }

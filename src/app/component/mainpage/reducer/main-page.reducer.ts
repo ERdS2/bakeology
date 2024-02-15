@@ -1,10 +1,4 @@
-// import {RecipeListState} from "../model/recipeList.state.model";
-// import {GetRecipeListRequest} from "../../../../../mock/backend-api/model/getRecipeListRequest";
-// import {RECEIVE_RECIPE_LIST, REQUEST_RECIPE_LIST} from "../action/main-page.action-factory";
-// import {CommonUtils} from "../../../core/utils/common.utils";
-// import {GetRecipeListResponse} from "../../../../../mock/backend-api/model/getRecipeListResponse";
-// import {CoreAction} from "../../../core/state/model/core.action.model";
-//
+
 import {RecipeListState} from "../model/recipeList.state.model";
 import {CoreAction} from "../../../core/state/model/core.action.model";
 import {RECEIVE_RECIPE_LIST, REQUEST_RECIPE_LIST} from "../action/main-page.action-factory";
@@ -38,7 +32,6 @@ export function mainPageReducer (state: RecipeListState, action: CoreAction<any>
   }
 
   function receiveGetRecipeList(originalState: RecipeListState, response: GetRecipeListResponse): RecipeListState {
-    console.warn(response)
     let changes: RecipeListState = {
       recipeList: response  ? CommonUtils.clone(response) : [],
       selectedRecipe: null,

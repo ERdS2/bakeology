@@ -1,6 +1,6 @@
-import {Component} from "@angular/core";
+import {Component, EventEmitter, Output} from "@angular/core";
 import {menuConfig} from "../../app.config";
-import {MenuItem} from "../menu/menu.model";
+import {MenuItem} from "../menu/model/menu.model";
 @Component({
   selector: "b-header",
   template: `
@@ -17,7 +17,10 @@ import {MenuItem} from "../menu/menu.model";
             </div>
 
             <div class="header-menu-container">
-                <header-menu [menuItemList]="menuItemList"></header-menu>
+                <header-menu
+                  [menuItemList]="menuItemList"
+                  (menuItemSelected)="menuItemSelected.emit($event)"
+                ></header-menu>
             </div>
 
         </div>
@@ -25,10 +28,14 @@ import {MenuItem} from "../menu/menu.model";
 })
 export class HeaderComponent {
   protected _menuItemList: Array<MenuItem>;
+
+  @Output()
+  menuItemSelected: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
+
   constructor()
   {this._menuItemList = menuConfig.menuItemList}
 
-public get menuItemList(): Array<MenuItem> {
-  return this._menuItemList;
-}
+  public get menuItemList(): Array<MenuItem> {
+    return this._menuItemList;
+  }
 }
