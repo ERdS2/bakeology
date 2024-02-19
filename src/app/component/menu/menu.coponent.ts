@@ -6,8 +6,8 @@ import {MenuItem} from "./model/menu.model";
   template: `
         <div class="menu-item-container">
           <ng-container *ngFor="let item of menuItemList; let index = index">
-            <a class="menu-item" [id]="item.titleKey" (click)="onMenuItemSelected(item.titleKey)">
-              {{item.titleKey}}
+            <a class="menu-item" [id]="item.titleKey" (click)="onMenuItemSelected(item.value)">
+              {{item.titleKey | resolve}}
             </a>
           </ng-container>
         </div>
@@ -27,8 +27,8 @@ export class MenuComponent {
 
   constructor() {}
 
-  onMenuItemSelected(titleKey): void {
-      this.menuItemSelected.emit(titleKey);
+  onMenuItemSelected(value): void {
+      this.menuItemSelected.emit(value);
   }
 
   public get menuItemList(): Array<MenuItem> {

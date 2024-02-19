@@ -2,23 +2,17 @@ import {MenuConfig, MenuItem} from "./component/menu/model/menu.model";
 
 const menuItemList: MenuItem[] = [
   {
-    titleKey: "mousse",
+    titleKey: "HEADER.MENU.TITLE.MOUSSE",
+    value: "mousse"
   },
   {
-    titleKey: "sable",
+    titleKey: "HEADER.MENU.TITLE.SABLE",
+    value: "sable"
   },
   {
-    titleKey: "tuile",
+    titleKey: "HEADER.MENU.TITLE.TUILE",
+    value: "tuile"
   }
-  // {
-  //   titleKey: "header.menu.mousse.title",
-  // },
-  // {
-  //   titleKey: "header.menu.sable.title",
-  // },
-  // {
-  //   titleKey: "header.menu.tuile.title",
-  // }
 ];
 
 export const menuConfig: MenuConfig = {

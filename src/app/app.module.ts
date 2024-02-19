@@ -10,6 +10,10 @@ import {menuConfig} from "./app.config";
 import {NgrxLoggerModule} from "./core/ngrxlogger/ngrx-logger.module";
 import {environment} from "../environments/environment";
 import {storeLogger} from "./core/ngrxlogger/ngrx-logger.model";
+import {ResourcePackage, ResourcePackageToken} from "./core/resource/resource.module";
+import {resourcePackage} from "./resource.config";
+import {CoreModule} from "./core/core.module";
+import {LocaleServiceConfig, LocaleServiceConfigToken} from "./core/locale/locale.module";
 
 export function logger(reducer: ActionReducer<any>): any {
   return storeLogger()(reducer);
@@ -17,6 +21,27 @@ export function logger(reducer: ActionReducer<any>): any {
 
 export const metaReducers = environment.production ? [] : [logger];
 
+export function resourcePackageFactory(): ResourcePackage {
+  const resourcePackages: ResourcePackage[] = [
+    resourcePackage
+  ];
+  let mergedResourcePackage = {};
+
+  for (let currentPackage of resourcePackages) {
+    for (let locale in currentPackage) {
+      if (!mergedResourcePackage[locale]) {
+        mergedResourcePackage[locale] = {};
+      }
+      Object.assign(mergedResourcePackage[locale], currentPackage[locale]);
+    }
+  }
+
+  return mergedResourcePackage;
+}
+export const localeConfig: LocaleServiceConfig = {
+  availableLocales: ["hu", "en"],
+  defaultLocale: "hu"
+};
 @NgModule({
   declarations: [
     AppComponent
@@ -27,10 +52,14 @@ export const metaReducers = environment.production ? [] : [logger];
     MainPageModule,
     NgrxLoggerModule,
     HttpClientModule,
+    CoreModule,
     StoreModule.forRoot({}, {metaReducers}),
   ],
   providers: [
     { provide: MenuConfigToken, useValue: menuConfig },
+    { provide: ResourcePackageToken, useFactory: resourcePackageFactory, multi: true },
+    { provide: LocaleServiceConfigToken, useValue: localeConfig },
+
   ],
   bootstrap: [AppComponent]
 })

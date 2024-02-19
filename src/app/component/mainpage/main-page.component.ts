@@ -41,9 +41,9 @@ export class MainPageComponent implements OnDestroy {
       }
     });
   }
-  public onMenuItemSelected(titleKey): void {
+  public onMenuItemSelected(value): void {
     const request = {
-      recipeType: titleKey
+      recipeType: value
     }
     this._mainPageActionFactory.getRecipeList(request).subscribe()
   }
