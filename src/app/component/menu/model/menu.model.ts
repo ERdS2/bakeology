@@ -11,4 +11,5 @@ export interface MenuConfig {
 export interface MenuItem {
   titleKey: string
   value: string
+  path: string
 }

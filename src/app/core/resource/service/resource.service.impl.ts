@@ -1,7 +1,7 @@
 import {Inject, Injectable} from "@angular/core";
 import {ResourceMap, ResourcePackage, ResourcePackageToken} from "../model/resource.model";
 import {ResourceService} from "./resource.service";
-import LocaleService, {LocaleServiceToken} from "../../locale/service/locale.service";
+import { LocaleService, LocaleServiceToken } from "../../locale/locale.module";
 
 /**
  * The default implemetation of the resource service. That collects the resource packages from Angular multi providers, based on the {@link ResourcePackageToken}.

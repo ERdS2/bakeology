@@ -4,6 +4,17 @@
   min-width: 13rem;
   border-right: 1px solid black;
 
+  .add-recipe-button{
+    margin: 0 auto;
+    border: none;
+    width: 12rem;
+    cursor: pointer;
+    display: block;
+    font-size: 20px;
+    padding: 0.5rem;
+    background-color: greenyellow;
+  }
+
   .header-menu-container{
     margin: 0 auto;
     width: 12rem;

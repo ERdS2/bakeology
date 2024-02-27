@@ -9,6 +9,8 @@ import {RECIPE_LIST_STATE_NAME} from "./model/recipeList.state.model";
 import {MainpageService} from "../../../../mock/backend-api/services/mainpage.service";
 import {MainPageActionFactoryToken} from "./action/main-page.action-factory";
 import {MainPageActionFactoryImp} from "./action/main-page.action.factory.imp";
+import {RecipeListModule} from "../recipe-list/recipe-list.module";
+import {RouterOutlet} from "@angular/router";
 
 @NgModule({
   declarations: [MainPageComponent],
@@ -17,7 +19,9 @@ import {MainPageActionFactoryImp} from "./action/main-page.action.factory.imp";
     CommonModule,
     HeaderModule,
     RecipeCardModule,
-    StoreModule.forFeature(RECIPE_LIST_STATE_NAME, mainPageReducer)
+    StoreModule.forFeature(RECIPE_LIST_STATE_NAME, mainPageReducer),
+    RecipeListModule,
+    RouterOutlet
   ],
   providers: [
     MainpageService,

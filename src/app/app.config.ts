@@ -3,15 +3,18 @@ import {MenuConfig, MenuItem} from "./component/menu/model/menu.model";
 const menuItemList: MenuItem[] = [
   {
     titleKey: "HEADER.MENU.TITLE.MOUSSE",
-    value: "mousse"
+    value: "mousse",
+    path: "/mousse"
   },
   {
     titleKey: "HEADER.MENU.TITLE.SABLE",
-    value: "sable"
+    value: "sable",
+    path: "/sable"
   },
   {
     titleKey: "HEADER.MENU.TITLE.TUILE",
-    value: "tuile"
+    value: "tuile",
+    path: "/tuile"
   }
 ];
 

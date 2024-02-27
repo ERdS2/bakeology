@@ -1,0 +1,10 @@
+.recipe-list-page-container{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 5rem;
+  margin: 1rem 2vw;
+  padding: 0;
+  list-style-type: none;
+  background-color: gold;
+}

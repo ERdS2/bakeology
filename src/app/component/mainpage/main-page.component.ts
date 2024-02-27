@@ -1,11 +1,5 @@
-import {Component, Inject, OnDestroy} from "@angular/core";
-import {Subscription} from "rxjs";
-import {Recipe} from "../../../../mock/backend-api/model/recipe.model";
-import {CommonUtils} from "../../core/utils/common.utils";
+import {Component, Inject} from "@angular/core";
 import {MainPageActionFactory, MainPageActionFactoryToken} from "./action/main-page.action-factory";
-import {Store} from "@ngrx/store";
-import {RecipeListState, selectRecipeListState} from "./model/recipeList.state.model";
-
 
 @Component({
   template: `
@@ -14,32 +8,25 @@ import {RecipeListState, selectRecipeListState} from "./model/recipeList.state.m
       <header class="main-header">
         <b-header
           (menuItemSelected)="onMenuItemSelected($event)"
+          (onClickAddRecipeButton)="onClickAddRecipeButton()"
         ></b-header>
       </header>
 
-      <main class="main-content-container" *ngFor="let recipe of recipeList">
-        <b-recipe-card [recipe]="recipe"></b-recipe-card>
+      <main class="main-page-body">
+        <router-outlet></router-outlet>
       </main>
 
     </div>
   `
 })
-export class MainPageComponent implements OnDestroy {
-  protected _stateSubscription: Subscription;
+export class MainPageComponent{
   protected _mainPageActionFactory: MainPageActionFactory;
-  protected _recipeList: Array<Recipe> = [];
 
   constructor(
-    ngrxStore: Store<any>,
-              @Inject(MainPageActionFactoryToken)
-                mainPageActionFactory: MainPageActionFactory,
-              ) {
+    @Inject(MainPageActionFactoryToken)
+    mainPageActionFactory: MainPageActionFactory,
+    ) {
     this._mainPageActionFactory = mainPageActionFactory;
-    this._stateSubscription = ngrxStore.select(selectRecipeListState).subscribe((state: RecipeListState) => {
-      if (state) {
-        this._recipeList = [...state.recipeList];
-      }
-    });
   }
   public onMenuItemSelected(value): void {
     const request = {
@@ -47,10 +34,9 @@ export class MainPageComponent implements OnDestroy {
     }
     this._mainPageActionFactory.getRecipeList(request).subscribe()
   }
-  public get recipeList(): Array<Recipe> {
-    return this._recipeList;
+
+  onClickAddRecipeButton(){
+   console.warn("onClickAddRecipeButton")
   }
-  ngOnDestroy(): void {
-    CommonUtils.unsubscribeAll(this._stateSubscription);
-  }
+
 }

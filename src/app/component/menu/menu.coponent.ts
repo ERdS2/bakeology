@@ -6,7 +6,7 @@ import {MenuItem} from "./model/menu.model";
   template: `
         <div class="menu-item-container">
           <ng-container *ngFor="let item of menuItemList; let index = index">
-            <a class="menu-item" [id]="item.titleKey" (click)="onMenuItemSelected(item.value)">
+            <a class="menu-item" [id]="item.titleKey" routerLink="{{item.path}}" (click)="onMenuItemSelected(item.value)">
               {{item.titleKey | resolve}}
             </a>
           </ng-container>
@@ -24,6 +24,9 @@ export class MenuComponent {
 
   @Output()
   menuItemSelected: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
+
+  @Output()
+  onClickAddRecipeButton: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
 

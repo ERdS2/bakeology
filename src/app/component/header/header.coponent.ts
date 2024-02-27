@@ -16,6 +16,8 @@ import {MenuItem} from "../menu/model/menu.model";
               </div>
             </div>
 
+            <button (click)="onClickAddRecipeButton.emit()" class="add-recipe-button">{{"HEADER.ADD_RECIPE.BUTTON.TEXT" | resolve}}</button>
+
             <div class="header-menu-container">
                 <header-menu
                   [menuItemList]="menuItemList"
@@ -31,6 +33,9 @@ export class HeaderComponent {
 
   @Output()
   menuItemSelected: EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
+
+  @Output()
+  onClickAddRecipeButton: EventEmitter<any> = new EventEmitter<any>();
 
   constructor()
   {this._menuItemList = menuConfig.menuItemList}
