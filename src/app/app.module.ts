@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {MainPageModule} from "./component/mainpage/main-page.module";
 import {ActionReducer, StoreModule} from "@ngrx/store";
 import { HttpClientModule} from "@angular/common/http";
 import {MenuConfigToken} from "./component/menu/model/menu.model";
@@ -13,7 +12,7 @@ import {storeLogger} from "./core/ngrxlogger/ngrx-logger.model";
 import {ResourcePackage, ResourcePackageToken} from "./core/resource/resource.module";
 import {resourcePackage} from "./resource.config";
 import {CoreModule} from "./core/core.module";
-import {LocaleServiceConfig, LocaleServiceConfigToken} from "./core/locale/locale.module";
+import {MainPageModule} from "./component/mainpage/main-page.module";
 
 export function logger(reducer: ActionReducer<any>): any {
   return storeLogger()(reducer);
@@ -38,8 +37,8 @@ export function resourcePackageFactory(): ResourcePackage {
 
   return mergedResourcePackage;
 }
-export const localeConfig: LocaleServiceConfig = {
-  availableLocales: ["hu", "en"],
+export const localeConfig = {
+  availableLocales: ["hu"],
   defaultLocale: "hu"
 };
 @NgModule({
@@ -58,7 +57,6 @@ export const localeConfig: LocaleServiceConfig = {
   providers: [
     { provide: MenuConfigToken, useValue: menuConfig },
     { provide: ResourcePackageToken, useFactory: resourcePackageFactory, multi: true },
-    { provide: LocaleServiceConfigToken, useValue: localeConfig },
 
   ],
   bootstrap: [AppComponent]

@@ -1,25 +1,21 @@
 import {Inject, Injectable} from "@angular/core";
 import {ResourceMap, ResourcePackage, ResourcePackageToken} from "../model/resource.model";
 import {ResourceService} from "./resource.service";
-import { LocaleService, LocaleServiceToken } from "../../locale/locale.module";
+import {localeConfig} from "../../../app.module";
 
 /**
  * The default implemetation of the resource service. That collects the resource packages from Angular multi providers, based on the {@link ResourcePackageToken}.
  */
 @Injectable()
 export class ResourceServiceImpl implements ResourceService {
-    protected _localeService: LocaleService;
     protected _resources!: ResourcePackage;
     protected _localeResources!: ResourceMap;
     protected _frontendResources: ResourcePackage[];
 
     constructor(
-            @Inject(LocaleServiceToken)
-              localeService: LocaleService,
             @Inject(ResourcePackageToken)
               resources: ResourcePackage[]) {
 
-        this._localeService = localeService;
         this._frontendResources = resources;
         this.processResources(resources);
         this.applyLocale();
@@ -85,7 +81,7 @@ export class ResourceServiceImpl implements ResourceService {
   }
 
   protected applyLocale() {
-    let locale: string = this._localeService.getLocale();
+    let locale: string = localeConfig.defaultLocale;
 
     if (!this._resources[locale]) {
       throw "This locale (" + locale + ") is not defined in any of our resource packages!";

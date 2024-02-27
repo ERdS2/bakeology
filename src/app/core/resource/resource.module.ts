@@ -4,11 +4,9 @@ import {ResourceMap, ResourcePackage, ResourcePackageToken} from "./model/resour
 import {ResourceService, ResourceServiceToken} from "./service/resource.service";
 import {ResourceServiceImpl} from "./service/resource.service.impl";
 import {HasResourceDirective} from "./directive/hasresource.directive";
-import { LocaleModule } from "../locale/locale.module";
 
 @NgModule({
     imports: [
-        LocaleModule
     ],
     declarations: [
         ResolvePipe,
