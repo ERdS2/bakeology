@@ -33,10 +33,6 @@ export class RecipeListComponent implements OnInit, OnDestroy{
     });
   }
   ngOnInit(): void {
-    // const request = {
-    //   recipeType: value
-    // }
-    // this._mainPageActionFactory.getRecipeList(request).subscribe()
   }
 
   public get recipeList(): Array<Recipe> {

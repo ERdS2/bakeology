@@ -5,6 +5,7 @@ export const MenuConfigToken: InjectionToken<MenuConfig> = new InjectionToken<Me
 export interface MenuConfig {
 
   menuItemList: MenuItem[];
+  addRecipeMenuItem: MenuItem;
 
 }
 

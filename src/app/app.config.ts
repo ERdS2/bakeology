@@ -15,9 +15,14 @@ const menuItemList: MenuItem[] = [
     titleKey: "HEADER.MENU.TITLE.TUILE",
     value: "tuile",
     path: "/tuile"
-  }
+  },
 ];
 
 export const menuConfig: MenuConfig = {
-  menuItemList: menuItemList
+  menuItemList: menuItemList,
+  addRecipeMenuItem: {
+      titleKey: "HEADER.MENU.TITLE.ADD.RECIPE",
+      value: "add-recipe",
+      path: "/add-recipe"
+  }
 }
