@@ -9,8 +9,9 @@ import {MainPageActionFactory, MainPageActionFactoryToken} from "../mainpage/act
 @Component({
   selector: "b-recipe-list",
   template: `
-    <div class="recipe-list-page-container" *ngFor="let recipe of recipeList">
-        <b-recipe-card [recipe]="recipe"></b-recipe-card>
+    <div class="b-recipe-list-container" >
+        <b-recipe-card *ngFor="let recipe of recipeList" class="b-recipe-card" [recipe]="recipe">
+        </b-recipe-card>
     </div>
   `
 })

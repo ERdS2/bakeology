@@ -5,8 +5,9 @@ import {MainPageActionFactory, MainPageActionFactoryToken} from "./action/main-p
   template: `
     <div class="main-page-container">
 
-      <header class="main-header">
+      <header>
         <b-header
+          class="main-header"
           (menuItemSelected)="onMenuItemSelected($event)"
           (onClickAddRecipeButton)="onClickAddRecipeButton()"
         ></b-header>
