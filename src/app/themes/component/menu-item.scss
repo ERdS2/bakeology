@@ -1,10 +1,15 @@
-.menu-item{
-  margin: 0.5rem auto;
-  cursor: pointer;
-  display: block;
-  font-size: 20px;
-  padding: 0.5rem;
-  background-color: aqua;
-  color: inherit;
-  text-decoration: inherit;
+.menu-item-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .menu-item {
+    cursor: pointer;
+    display: block;
+    font-size: 20px;
+    padding: 0.5rem;
+    background-color: aqua;
+    color: inherit;
+    text-decoration: inherit;
+  }
 }
