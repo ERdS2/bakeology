@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import ResourceService, {ResourceServiceToken} from "../../core/resource/service/resource.service";
 import {UnitEnum} from "./model/unit.enum";
 import {RecipeCategoryConfig, UnitConfig} from "../../app.config";
@@ -60,7 +60,7 @@ import {CommonUtils} from "../../core/utils/common.utils";
                 </small>
               </div>
               <div class="unit-wrapper p-inputgroup">
-                <p-inputNumber class="p-input" formControlName="value" placeholder="{{'ADD_RECIPE.FIELD.VALUE.LABEL' | resolve}}"/>
+                <p-inputNumber class="p-input" formControlName="amount" placeholder="{{'ADD_RECIPE.FIELD.AMOUNT.LABEL' | resolve}}"/>
                 <div class="p-inputgroup-addon">
                     <p-dropdown class="unit-dropdown" [options]="unitOptions" formControlName="unit"></p-dropdown>
                 </div>
@@ -124,7 +124,7 @@ export class AddRecipeComponent implements OnInit{
   addIngredient() {
     const ingredientForm = this.fb.group({
       name: ['', Validators.required],
-      value: [null],
+      amount: [null],
       unit: [this.unitOptions[0]]
     })
     this.ingredients.push(ingredientForm);

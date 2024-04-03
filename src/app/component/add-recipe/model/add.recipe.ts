@@ -19,6 +19,6 @@ export interface BakeParam {
 
 export interface Ingredient {
   name: string,
-  value: number,
+  amount: number,
   unit: UnitEnum,
 }

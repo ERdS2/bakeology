@@ -17,7 +17,7 @@ export const resourcePackage: ResourcePackage = {
     "ADD_RECIPE.FIELD.TIME.MINUTE.LABEL" : "Perc",
     "ADD_RECIPE.FIELD.TEMPERATURE.LABEL" : "°C",
     "ADD_RECIPE.FIELD.INGREDIENTS.LABEL" : "Alapanyag",
-    "ADD_RECIPE.FIELD.VALUE.LABEL" : "Mennyiség",
+    "ADD_RECIPE.FIELD.AMOUNT.LABEL" : "Mennyiség",
     "ADD_RECIPE.FIELD.UNIT.LABEL" : "Mértékegység",
   }
 }

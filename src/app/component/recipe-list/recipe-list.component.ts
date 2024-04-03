@@ -22,8 +22,8 @@ export class RecipeListComponent implements OnInit, OnDestroy{
 
   constructor(
     ngrxStore: Store<any>,
-  @Inject(MainPageActionFactoryToken)
-  mainPageActionFactory: MainPageActionFactory,
+    @Inject(MainPageActionFactoryToken)
+    mainPageActionFactory: MainPageActionFactory,
   ) {
     this._mainPageActionFactory = mainPageActionFactory;
     this._stateSubscription = ngrxStore.select(selectRecipeListState).subscribe((state: RecipeListState) => {
