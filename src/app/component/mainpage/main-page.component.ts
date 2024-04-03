@@ -9,7 +9,6 @@ import {MainPageActionFactory, MainPageActionFactoryToken} from "./action/main-p
         <b-header
           class="main-header"
           (menuItemSelected)="onMenuItemSelected($event)"
-          (onClickAddRecipeButton)="onClickAddRecipeButton()"
         ></b-header>
       </header>
 
@@ -31,13 +30,9 @@ export class MainPageComponent{
   }
   public onMenuItemSelected(value): void {
     const request = {
-      recipeType: value
+      category: value
     }
     this._mainPageActionFactory.getRecipeList(request).subscribe()
-  }
-
-  onClickAddRecipeButton(){
-   console.warn("onClickAddRecipeButton")
   }
 
 }

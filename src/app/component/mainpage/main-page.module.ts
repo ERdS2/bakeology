@@ -8,9 +8,12 @@ import {mainPageReducer} from "./reducer/main-page.reducer";
 import {RECIPE_LIST_STATE_NAME} from "./model/recipeList.state.model";
 import {MainpageService} from "../../../../mock/backend-api/services/mainpage.service";
 import {MainPageActionFactoryToken} from "./action/main-page.action-factory";
-import {MainPageActionFactoryImp} from "./action/main-page.action.factory.imp";
 import {RecipeListModule} from "../recipe-list/recipe-list.module";
 import {RouterOutlet} from "@angular/router";
+import {AddRecipeModule} from "../add-recipe/add-recipe.module";
+import {ResourceModule} from "../../core/resource/resource.module";
+import {ButtonModule} from "primeng/button";
+import {MainPageActionFactoryImpl} from "./action/main-page.action.factory.impl";
 
 @NgModule({
   declarations: [MainPageComponent],
@@ -19,13 +22,16 @@ import {RouterOutlet} from "@angular/router";
     CommonModule,
     HeaderModule,
     RecipeCardModule,
+    AddRecipeModule,
     StoreModule.forFeature(RECIPE_LIST_STATE_NAME, mainPageReducer),
     RecipeListModule,
-    RouterOutlet
+    RouterOutlet,
+    ResourceModule,
+    ButtonModule
   ],
   providers: [
     MainpageService,
-    {provide: MainPageActionFactoryToken, useClass: MainPageActionFactoryImp}
+    {provide: MainPageActionFactoryToken, useClass: MainPageActionFactoryImpl}
   ]
 })
 class MainPageModule { }

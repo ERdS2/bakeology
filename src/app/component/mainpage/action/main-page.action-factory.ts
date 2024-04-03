@@ -15,8 +15,4 @@ export interface MainPageActionFactory {
 
   getRecipeList(request: GetRecipeListRequest): Observable<GetRecipeListResponse>;
 
-  // selectedRecipe(recipe: Recipe): void;
-  //
-  // deleteRecipe(recipe: Recipe): Observable<any>;
-
 }

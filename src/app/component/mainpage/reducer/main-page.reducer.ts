@@ -41,7 +41,7 @@ export function mainPageReducer (state: RecipeListState, action: CoreAction<any>
 
   function clearRecipeListRequestState(): GetRecipeListRequest {
     return {
-      recipeType: null
+      category: null
     };
   }
   function changeState(originalState: RecipeListState, changes: RecipeListState): RecipeListState {

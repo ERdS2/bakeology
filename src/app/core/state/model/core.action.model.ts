@@ -1,7 +1,4 @@
 import {Action} from "@ngrx/store";
-/**
- * Form változás késleltetésére szükséges várakozási idő
- */
 export const FORM_DEBOUNCE_TIME: number = 200;
 export interface CoreAction<T> extends Action {
   type: string;

@@ -1,4 +1,4 @@
 export interface GetRecipeListRequest {
-  recipeType?: string;
+  category?: string;
 
 }

@@ -12,7 +12,7 @@ import {Observable, Subscriber} from "rxjs";
 import {CoreAction} from "../../../core/state/model/core.action.model";
 
 @Injectable()
-export class MainPageActionFactoryImp implements MainPageActionFactory {
+export class MainPageActionFactoryImpl implements MainPageActionFactory {
 
   protected _ngrxStore: Store<any>;
   protected _mainPageService: MainpageService;
@@ -63,60 +63,4 @@ export class MainPageActionFactoryImp implements MainPageActionFactory {
       payload: response
     };
   }
-
-  // public selectedRecipe(recipe: Recipe): void {
-  //   this._ngrxStore.dispatch(this.getSelectedRecipeAction(recipe));
-  // }
-  //
-  // protected getSelectedRecipeAction(recipe: Recipe): CoreAction<Recipe> {
-  //   return {
-  //     type: SELECTED_RECIPE_ITEM,
-  //     payload: recipe
-  //   };
-  // }
-
-  // public deleteRecipe(recipe: Recipe): Observable<any> {
-    // return new Observable<any>((subscriber: Subscriber<any>) => {
-    //
-    //   this.requestDeleteRecipe(recipe);
-    //
-    //   let request: PutRecipeModifyStatusRequest = {
-    //     data: [recipe]
-    //   };
-    //
-    //   this._mainPageService.putRecipeModifyStatus(request).subscribe(
-    //     (response: any) => {
-    //       this.receiveDeleteRecipe(recipe.id);
-    //       subscriber.next(response);
-    //       subscriber.complete();
-    //     },
-    //     error => {
-    //       subscriber.error(error);
-    //     });
-    //   return function unsubscribe() {
-    //   };
-    // });
-  // }
-
-  // public requestDeleteRecipe(recipe: Recipe): void {
-  //   this._ngrxStore.dispatch(this.getRequestDeleteRecipeAction(recipe));
-  // }
-  //
-  // protected getRequestDeleteRecipeAction(recipe: Recipe): CoreAction<Recipe> {
-  //   return {
-  //     type: REQUEST_DELETE_RECIPE,
-  //     payload: recipe
-  //   };
-  // }
-  //
-  // public receiveDeleteRecipe(recipeId: number): void {
-  //   this._ngrxStore.dispatch(this.getReceiveDeleteRecipeAction(recipeId));
-  // }
-  //
-  // protected getReceiveDeleteRecipeAction(recipeId: number): CoreAction<number> {
-  //   return {
-  //     type: RECEIVE_DELETE_RECIPE,
-  //     payload: recipeId
-  //   };
-  // }
 }

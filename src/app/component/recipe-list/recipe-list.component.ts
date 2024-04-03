@@ -18,7 +18,6 @@ import {MainPageActionFactory, MainPageActionFactoryToken} from "../mainpage/act
 export class RecipeListComponent implements OnInit, OnDestroy{
   protected _recipeList: Array<Recipe> = [];
   protected _mainPageActionFactory: MainPageActionFactory;
-
   protected _stateSubscription: Subscription;
 
   constructor(

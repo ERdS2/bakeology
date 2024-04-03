@@ -1,4 +1,6 @@
 import {MenuConfig, MenuItem} from "./component/menu/model/menu.model";
+import {UnitEnum} from "./component/add-recipe/model/unit.enum";
+import {RecipeCategoryEnum} from "./component/add-recipe/model/recipe-category.enum";
 
 const menuItemList: MenuItem[] = [
   {
@@ -26,3 +28,5 @@ export const menuConfig: MenuConfig = {
       path: "/add-recipe"
   }
 }
+export const UnitConfig: Array<UnitEnum> = [UnitEnum.G, UnitEnum.TK, UnitEnum.CS, UnitEnum.KK, UnitEnum.DB]
+export const RecipeCategoryConfig: Array<RecipeCategoryEnum> = [RecipeCategoryEnum.INSERT, RecipeCategoryEnum.MOUSSE, RecipeCategoryEnum.SABLE, RecipeCategoryEnum.TUILE, RecipeCategoryEnum.SPONGECAKE]

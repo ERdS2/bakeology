@@ -6,5 +6,8 @@
   .main-page-body{
     width: 100%;
     padding: 2rem;
+    height: fit-content;
+    border-left: 1px solid black;
+    min-height: 100vh
   }
 }
