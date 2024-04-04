@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RecipeCardComponent} from "./recipe-card.coponent";
+import {ToggleButtonModule} from "primeng/togglebutton";
 
 
 
@@ -8,9 +9,10 @@ import {RecipeCardComponent} from "./recipe-card.coponent";
   declarations: [
     RecipeCardComponent
   ],
-  imports: [
-    CommonModule
-  ],
+    imports: [
+        CommonModule,
+        ToggleButtonModule
+    ],
   exports: [
     RecipeCardComponent
   ]

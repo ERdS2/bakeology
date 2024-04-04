@@ -14,6 +14,9 @@ import {AddRecipeModule} from "../add-recipe/add-recipe.module";
 import {ResourceModule} from "../../core/resource/resource.module";
 import {ButtonModule} from "primeng/button";
 import {MainPageActionFactoryImpl} from "./action/main-page.action.factory.impl";
+import {RecipeService} from "../../../../mock/backend-api/services/recipe.service";
+import {AddRecipeActionFactoryToken} from "../add-recipe/action/add-recipe.action.factory";
+import {AddRecipeActionFactoryImpl} from "../add-recipe/action/add-recipe.action.factory.impl";
 
 @NgModule({
   declarations: [MainPageComponent],
@@ -31,7 +34,9 @@ import {MainPageActionFactoryImpl} from "./action/main-page.action.factory.impl"
   ],
   providers: [
     MainpageService,
-    {provide: MainPageActionFactoryToken, useClass: MainPageActionFactoryImpl}
+    {provide: MainPageActionFactoryToken, useClass: MainPageActionFactoryImpl},
+    RecipeService,
+    {provide: AddRecipeActionFactoryToken, useClass: AddRecipeActionFactoryImpl}
   ]
 })
 class MainPageModule { }

@@ -1,11 +1,12 @@
 import {UnitEnum} from "./unit.enum";
 import {RecipeCategoryEnum} from "./recipe-category.enum";
 
-export interface AddRecipe {
+export interface NewRecipe {
   title: string,
   bakeParam?: BakeParam,
   ingredients?: Array<Ingredient>,
   category: RecipeCategoryEnum
+  favorite: boolean
 
 }
 

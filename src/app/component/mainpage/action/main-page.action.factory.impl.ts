@@ -5,23 +5,23 @@ import {
   REQUEST_RECIPE_LIST,
 } from "./main-page.action-factory";
 import {Store} from "@ngrx/store";
-import {MainpageService} from "../../../../../mock/backend-api/services/mainpage.service";
 import {GetRecipeListRequest} from "../../../../../mock/backend-api/model/getRecipeListRequest";
 import {GetRecipeListResponse} from "../../../../../mock/backend-api/model/getRecipeListResponse";
 import {Observable, Subscriber} from "rxjs";
 import {CoreAction} from "../../../core/state/model/core.action.model";
+import {RecipeService} from "../../../../../mock/backend-api/services/recipe.service";
 
 @Injectable()
 export class MainPageActionFactoryImpl implements MainPageActionFactory {
 
   protected _ngrxStore: Store<any>;
-  protected _mainPageService: MainpageService;
+  protected _recipeService: RecipeService;
   constructor(
     ngrxStore: Store<any>,
-    mainPageService: MainpageService,
+    recipeService: RecipeService,
   ) {
     this._ngrxStore = ngrxStore;
-    this._mainPageService = mainPageService;
+    this._recipeService = recipeService;
   }
 
   public getRecipeList(request: GetRecipeListRequest): Observable<GetRecipeListResponse> {
@@ -29,7 +29,7 @@ export class MainPageActionFactoryImpl implements MainPageActionFactory {
 
       this.requestGetRecipeList(request);
 
-      this._mainPageService.getRecipeList(request).subscribe(
+      this._recipeService.getRecipeList(request).subscribe(
         (response: GetRecipeListResponse) => {
           this.receiveRecipeList(response);
           subscriber.next(response);
@@ -43,10 +43,10 @@ export class MainPageActionFactoryImpl implements MainPageActionFactory {
     });
   }
   requestGetRecipeList(request) {
-    this._ngrxStore.dispatch(this.getRequestGetRecipeListAction(request));
+    this._ngrxStore.dispatch(this.requestGetRecipeListAction(request));
   }
 
-  getRequestGetRecipeListAction(request) {
+  requestGetRecipeListAction(request) {
     return {
       type: REQUEST_RECIPE_LIST,
       payload: request
@@ -54,10 +54,10 @@ export class MainPageActionFactoryImpl implements MainPageActionFactory {
   }
 
   public receiveRecipeList(response: GetRecipeListResponse): void {
-    this._ngrxStore.dispatch(this.getReceiveRecipeListAction(response));
+    this._ngrxStore.dispatch(this.receiveRecipeListAction(response));
   }
 
-  protected getReceiveRecipeListAction(response: GetRecipeListResponse): CoreAction<GetRecipeListResponse> {
+  protected receiveRecipeListAction(response: GetRecipeListResponse): CoreAction<GetRecipeListResponse> {
     return {
       type: RECEIVE_RECIPE_LIST,
       payload: response

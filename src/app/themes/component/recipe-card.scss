@@ -18,7 +18,38 @@
 
   .recipe-card-title-button-container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+    .recipe-card-title{
+      min-width: 8.75rem;
+    }
+
+    .temperature-field{
+      margin: 0;
+    }
+
+    .time-wrapper{
+      display: flex;
+      flex-direction: row;
+      .time-field{
+        margin: 0;
+      }
+    }
+    .fav-delete-button-wrapper{
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+
+      .delete-ingredient-icon{
+        cursor: pointer;
+      }
+      .add-favorite-icon{
+        cursor: pointer;
+      }
+    }
   }
 
   .recipe-card-title{

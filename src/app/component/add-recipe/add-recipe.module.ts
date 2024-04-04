@@ -8,7 +8,7 @@ import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {InputNumberModule} from "primeng/inputnumber";
-import {AddRecipeService} from "../../../../mock/backend-api/services/add-recipe.service";
+import {RecipeService} from "../../../../mock/backend-api/services/recipe.service";
 import {AddRecipeActionFactoryToken} from "./action/add-recipe.action.factory";
 import {AddRecipeActionFactoryImpl} from "./action/add-recipe.action.factory.impl";
 @NgModule({
@@ -27,7 +27,7 @@ import {AddRecipeActionFactoryImpl} from "./action/add-recipe.action.factory.imp
     InputNumberModule
   ],
   providers: [
-    AddRecipeService,
+    RecipeService,
     {provide: AddRecipeActionFactoryToken, useClass: AddRecipeActionFactoryImpl}
   ]
 })

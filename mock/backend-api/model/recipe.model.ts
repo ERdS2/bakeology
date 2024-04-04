@@ -4,6 +4,7 @@ export interface Recipe {
   category: string,
   bakeParam: BakeParam,
   ingredients: Array<Ingredient>
+  favorite: boolean
 }
 
 export  interface Ingredient{
@@ -12,12 +13,12 @@ export  interface Ingredient{
   unit: string
 }
 export interface BakeParam{
-  temperature: number,
+  temperature?: number,
   time: TimeParam
 }
 
 export interface TimeParam{
-  hour: number,
-  minute: number
+  hour?: number,
+  minute?: number
 }
 

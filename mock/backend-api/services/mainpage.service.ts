@@ -27,23 +27,6 @@ export class MainpageService {
       this.configuration.basePath = basePath;
     }
   }
-  public getRecipeList(getRecipeListRequest: GetRecipeListRequest, observe?: 'body', reportProgress?: boolean): Observable<GetRecipeListResponse>;
-  public getRecipeList(getRecipeListRequest: GetRecipeListRequest, observe?: 'response'): Observable<HttpResponse<GetRecipeListResponse>>;
-  public getRecipeList(getRecipeListRequest: GetRecipeListRequest, observe?: 'events'): Observable<HttpEvent<GetRecipeListResponse>>;
-  public getRecipeList(getRecipeListRequest: GetRecipeListRequest, observe: any = 'body'): Observable<any> {
-    if (getRecipeListRequest === null || getRecipeListRequest === undefined)  {
-      throw new Error('Required parameter getRecipeListRequest was null or undefined when calling getRecipeList.');
-    }
-
-    let headers = this.defaultHeaders;
-
-    return this.httpClient.get<any>(`${this.configuration.basePath}/${getRecipeListRequest.category}`,
-      {
-        headers: headers,
-        observe: observe,
-      }
-    );
-  }
 
 
 }
