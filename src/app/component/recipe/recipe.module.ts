@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddRecipeComponent } from './add-recipe.component';
+import {AddRecipeComponent} from "./component/add-recipe.component";
 import {ResourceModule} from "../../core/resource/resource.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { DropdownModule } from "primeng/dropdown";
+import {DropdownModule} from "primeng/dropdown";
 import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {InputNumberModule} from "primeng/inputnumber";
 import {RecipeService} from "../../../../mock/backend-api/services/recipe.service";
-import {AddRecipeActionFactoryToken} from "./action/add-recipe.action.factory";
-import {AddRecipeActionFactoryImpl} from "./action/add-recipe.action.factory.impl";
+import {RecipeListComponent} from "./component/recipe-list.component";
+import {RecipeCardModule} from "../../feature/recipe-card/recipe-card.module";
+import {RecipeActionFactoryToken} from "./action/recipe.action-factory";
+import {RecipeActionFactoryImpl} from "./action/recipe.action.factory.impl";
+import {ToggleButtonModule} from "primeng/togglebutton";
 @NgModule({
   declarations: [
-    AddRecipeComponent
+    AddRecipeComponent,
+    RecipeListComponent
   ],
   imports: [
     CommonModule,
@@ -24,11 +28,17 @@ import {AddRecipeActionFactoryImpl} from "./action/add-recipe.action.factory.imp
     ButtonModule,
     InputTextModule,
     BrowserAnimationsModule,
-    InputNumberModule
+    InputNumberModule,
+    RecipeCardModule,
+    ToggleButtonModule,
+
   ],
   providers: [
     RecipeService,
-    {provide: AddRecipeActionFactoryToken, useClass: AddRecipeActionFactoryImpl}
+    {provide: RecipeActionFactoryToken, useClass: RecipeActionFactoryImpl}
+  ],
+  exports: [
+    RecipeListComponent,
   ]
 })
-export class AddRecipeModule { }
+export class RecipeModule { }

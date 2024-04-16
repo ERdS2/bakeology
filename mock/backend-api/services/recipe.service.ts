@@ -3,8 +3,8 @@ import {HttpClient, HttpEvent, HttpHeaders, HttpParameterCodec, HttpResponse} fr
 import { Configuration } from '../configuration';
 import {BASE_PATH} from "../variables";
 import {Observable} from "rxjs";
-import {NewRecipe} from "../../../src/app/component/add-recipe/model/new-recipe";
-import {EmptyResponse} from "../../../src/app/component/add-recipe/model/empty-response.interface";
+import {NewRecipeModel} from "../model/new-recipe.model";
+import {EmptyResponse} from "../../../src/app/component/recipe/model/empty-response.interface";
 import {GetRecipeListRequest} from "../model/getRecipeListRequest";
 import {GetRecipeListResponse} from "../model/getRecipeListResponse";
 import {Recipe} from "../model/recipe.model";
@@ -50,10 +50,10 @@ export class RecipeService {
   }
 
 
-  public saveNewRecipe(saveNewRecipeRequest: NewRecipe, observe?: 'body', reportProgress?: boolean): Observable<EmptyResponse>;
-  public saveNewRecipe(saveNewRecipeRequest: NewRecipe, observe?: 'response'): Observable<HttpResponse<EmptyResponse>>;
-  public saveNewRecipe(saveNewRecipeRequest: NewRecipe, observe?: 'events'): Observable<HttpEvent<EmptyResponse>>;
-  public saveNewRecipe(saveNewRecipeRequest: NewRecipe, observe: any = 'body'): Observable<any> {
+  public saveNewRecipe(saveNewRecipeRequest: NewRecipeModel, observe?: 'body', reportProgress?: boolean): Observable<EmptyResponse>;
+  public saveNewRecipe(saveNewRecipeRequest: NewRecipeModel, observe?: 'response'): Observable<HttpResponse<EmptyResponse>>;
+  public saveNewRecipe(saveNewRecipeRequest: NewRecipeModel, observe?: 'events'): Observable<HttpEvent<EmptyResponse>>;
+  public saveNewRecipe(saveNewRecipeRequest: NewRecipeModel, observe: any = 'body'): Observable<any> {
     if (saveNewRecipeRequest === null || saveNewRecipeRequest === undefined)  {
       throw new Error('Required parameter saveNewRecipeRequest was null or undefined when calling saveNewRecipe.');
     }
@@ -80,7 +80,6 @@ export class RecipeService {
     let headers = this.defaultHeaders;
 
     return this.httpClient.delete<any>(`${this.configuration.basePath}/${deleteRecipeRequest.category}/${deleteRecipeRequest.id}`,
-      deleteRecipeRequest,
       {
         headers: headers,
         observe: observe,
@@ -98,7 +97,7 @@ export class RecipeService {
 
     let headers = this.defaultHeaders;
 
-    return this.httpClient.post<any>(`${this.configuration.basePath}/${addRecipeToFavoriteRequest.category}/${addRecipeToFavoriteRequest.id}`,
+    return this.httpClient.put<any>(`${this.configuration.basePath}/${addRecipeToFavoriteRequest.category}/${addRecipeToFavoriteRequest.id}`,
       addRecipeToFavoriteRequest,
       {
         headers: headers,

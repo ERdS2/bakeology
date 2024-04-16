@@ -13,6 +13,7 @@ import {ResourcePackage, ResourcePackageToken} from "./core/resource/resource.mo
 import {resourcePackage} from "./resource.config";
 import {CoreModule} from "./core/core.module";
 import {MainPageModule} from "./component/mainpage/main-page.module";
+import {RecipeModule} from "./component/recipe/recipe.module";
 
 export function logger(reducer: ActionReducer<any>): any {
   return storeLogger()(reducer);
@@ -51,6 +52,7 @@ export const localeConfig = {
     MainPageModule,
     NgrxLoggerModule,
     HttpClientModule,
+    RecipeModule,
     CoreModule,
     StoreModule.forRoot({}, {metaReducers}),
   ],

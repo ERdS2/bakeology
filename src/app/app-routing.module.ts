@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {MainPageComponent} from "./component/mainpage/main-page.component";
-import {RecipeListComponent} from "./component/recipe-list/recipe-list.component";
-import {AddRecipeComponent} from "./component/add-recipe/add-recipe.component";
+import {RecipeListComponent} from "./component/recipe/component/recipe-list.component";
+import {AddRecipeComponent} from "./component/recipe/component/add-recipe.component";
+import {RecipeListMousseResolve} from "./component/recipe/resolve/recipe-list-mousse.resolve";
+import {RecipeListTuileResolve} from "./component/recipe/resolve/recipe-list-tuile.resolve";
+import {RecipeListSableResolve} from "./component/recipe/resolve/recipe-list-sable.resolve";
+import {RecipeModule} from "./component/recipe/recipe.module";
 
 const routes: Routes = [
   {
@@ -11,26 +15,46 @@ const routes: Routes = [
     children: [
       {
         path: "mousse",
-        component: RecipeListComponent
+        component: RecipeListComponent,
+        resolve: {
+          recipeList: RecipeListMousseResolve
+        }
       },
       {
         path: "tuile",
-        component: RecipeListComponent
+        component: RecipeListComponent,
+        resolve: {
+          recipeList: RecipeListTuileResolve
+        }
       },
       {
         path: "sable",
-        component: RecipeListComponent
+        component: RecipeListComponent,
+        resolve: {
+          recipeList: RecipeListSableResolve
+        }
       },
       {
         path: "add-recipe",
-        component: AddRecipeComponent
+        component: AddRecipeComponent,
+        resolve: {
+
+        }
       }
     ]
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RecipeModule,
+    RouterModule.forRoot(routes)
+  ],
+  exports: [RouterModule],
+  providers: [
+    RecipeListTuileResolve,
+    RecipeListSableResolve,
+    RecipeListMousseResolve
+  ]
 })
 export class AppRoutingModule { }

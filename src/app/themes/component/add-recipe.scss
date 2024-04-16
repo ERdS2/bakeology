@@ -30,10 +30,15 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
 
-    .bake-title-category-wrapper{
+    .title-category-wrapper{
       display: inline-flex;
       gap: 1rem;
       position: relative;
+
+      .favorite-icon-container{
+        .favorite-icon{
+        }
+      }
       .title-input-container{
         position: relative;
       }

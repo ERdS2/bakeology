@@ -4,19 +4,15 @@ import {MainPageComponent} from "./main-page.component";
 import {HeaderModule} from "../header/header.module";
 import {RecipeCardModule} from "../../feature/recipe-card/recipe-card.module";
 import {StoreModule} from "@ngrx/store";
-import {mainPageReducer} from "./reducer/main-page.reducer";
-import {RECIPE_LIST_STATE_NAME} from "./model/recipeList.state.model";
-import {MainpageService} from "../../../../mock/backend-api/services/mainpage.service";
-import {MainPageActionFactoryToken} from "./action/main-page.action-factory";
-import {RecipeListModule} from "../recipe-list/recipe-list.module";
+import {recipeReducer} from "../recipe/reducer/recipe.reducer";
 import {RouterOutlet} from "@angular/router";
-import {AddRecipeModule} from "../add-recipe/add-recipe.module";
 import {ResourceModule} from "../../core/resource/resource.module";
 import {ButtonModule} from "primeng/button";
-import {MainPageActionFactoryImpl} from "./action/main-page.action.factory.impl";
 import {RecipeService} from "../../../../mock/backend-api/services/recipe.service";
-import {AddRecipeActionFactoryToken} from "../add-recipe/action/add-recipe.action.factory";
-import {AddRecipeActionFactoryImpl} from "../add-recipe/action/add-recipe.action.factory.impl";
+import {RecipeModule} from "../recipe/recipe.module";
+import {RecipeActionFactoryToken} from "../recipe/action/recipe.action-factory";
+import {RecipeActionFactoryImpl} from "../recipe/action/recipe.action.factory.impl";
+import {RECIPE_STATE_NAME} from "../recipe/model/recipe.state.model";
 
 @NgModule({
   declarations: [MainPageComponent],
@@ -25,18 +21,15 @@ import {AddRecipeActionFactoryImpl} from "../add-recipe/action/add-recipe.action
     CommonModule,
     HeaderModule,
     RecipeCardModule,
-    AddRecipeModule,
-    StoreModule.forFeature(RECIPE_LIST_STATE_NAME, mainPageReducer),
-    RecipeListModule,
+    RecipeModule,
+    StoreModule.forFeature(RECIPE_STATE_NAME, recipeReducer),
     RouterOutlet,
     ResourceModule,
     ButtonModule
   ],
   providers: [
-    MainpageService,
-    {provide: MainPageActionFactoryToken, useClass: MainPageActionFactoryImpl},
     RecipeService,
-    {provide: AddRecipeActionFactoryToken, useClass: AddRecipeActionFactoryImpl}
+    {provide: RecipeActionFactoryToken, useClass: RecipeActionFactoryImpl}
   ]
 })
 class MainPageModule { }

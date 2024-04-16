@@ -1,6 +1,6 @@
 import {MenuConfig, MenuItem} from "./component/menu/model/menu.model";
-import {UnitEnum} from "./component/add-recipe/model/unit.enum";
-import {RecipeCategoryEnum} from "./component/add-recipe/model/recipe-category.enum";
+import {UnitEnum} from "./component/recipe/model/unit.enum";
+import {RecipeCategoryEnum} from "./component/recipe/model/recipe-category.enum";
 
 const menuItemList: MenuItem[] = [
   {

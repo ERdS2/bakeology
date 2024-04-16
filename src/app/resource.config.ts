@@ -3,8 +3,8 @@ import {ResourcePackage} from "./core/resource/model/resource.model";
 export const resourcePackage: ResourcePackage = {
   "en": {},
   "hu": {
-    "HEADER.ADD_RECIPE.BUTTON.TEXT": "Recept hozzáadása",
     // menu
+    "HEADER.ADD_RECIPE.BUTTON.TEXT": "Recept hozzáadása",
     "HEADER.MENU.TITLE.MOUSSE": "Mousse",
     "HEADER.MENU.TITLE.SABLE": "Sable",
     "HEADER.MENU.TITLE.TUILE": "Tuile",
@@ -19,5 +19,9 @@ export const resourcePackage: ResourcePackage = {
     "ADD_RECIPE.FIELD.INGREDIENTS.LABEL" : "Alapanyag",
     "ADD_RECIPE.FIELD.AMOUNT.LABEL" : "Mennyiség",
     "ADD_RECIPE.FIELD.UNIT.LABEL" : "Mértékegység",
+    // Recipe card
+    "RECIPE_CARD.TIME_UNIT.HOUR": "ó",
+    "RECIPE_CARD.TIME_UNIT.MINUTE": "p",
+    "RECIPE_CARD.TEMPERATURE": "°C",
   }
 }

@@ -1,5 +1,5 @@
 import {Component, Inject} from "@angular/core";
-import {MainPageActionFactory, MainPageActionFactoryToken} from "./action/main-page.action-factory";
+import {RecipeActionFactory, RecipeActionFactoryToken} from "../recipe/action/recipe.action-factory";
 
 @Component({
   template: `
@@ -8,7 +8,6 @@ import {MainPageActionFactory, MainPageActionFactoryToken} from "./action/main-p
       <header>
         <b-header
           class="main-header"
-          (menuItemSelected)="onMenuItemSelected($event)"
         ></b-header>
       </header>
 
@@ -20,19 +19,13 @@ import {MainPageActionFactory, MainPageActionFactoryToken} from "./action/main-p
   `
 })
 export class MainPageComponent{
-  protected _mainPageActionFactory: MainPageActionFactory;
+  protected _recipeActionFactory: RecipeActionFactory;
 
   constructor(
-    @Inject(MainPageActionFactoryToken)
-    mainPageActionFactory: MainPageActionFactory,
+    @Inject(RecipeActionFactoryToken)
+    recipeActionFactory: RecipeActionFactory,
     ) {
-    this._mainPageActionFactory = mainPageActionFactory;
-  }
-  public onMenuItemSelected(value): void {
-    const request = {
-      category: value
-    }
-    this._mainPageActionFactory.getRecipeList(request).subscribe()
+    this._recipeActionFactory = recipeActionFactory;
   }
 
 }
