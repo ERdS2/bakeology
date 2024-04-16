@@ -3,6 +3,11 @@ import {Subscription} from "rxjs";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
 
 export class CommonUtils {
+
+  /**
+   * Leiratkozás Subscription példányokról, a komponens onDestroy metódusában használatos.
+   * @param {Subscription, Subscription...} subscriptions egy, vagy több Subscription példány
+   */
   public static unsubscribeAll(...subscriptions: Subscription[]) {
     if (subscriptions && subscriptions.length > 0) {
       subscriptions.forEach(subscription => {
@@ -37,4 +42,19 @@ export class CommonUtils {
       }
     });
   }
+
+  /**
+   * Generates UUID based on the actual timestamp
+   * @returns {string}
+   */
+  static generateUUId(): string {
+    let time: number = new Date().getTime();
+    const uuid: string = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (char) {
+      const rand = (time + Math.random() * 16) % 16 | 0;
+      time = Math.floor(time / 16);
+      return (char === "x" ? rand : (rand & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
+  }
+
 }
