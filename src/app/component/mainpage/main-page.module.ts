@@ -24,8 +24,8 @@ import {RECIPE_STATE_NAME} from "../recipe/model/recipe.state.model";
     RecipeModule,
     StoreModule.forFeature(RECIPE_STATE_NAME, recipeReducer),
     RouterOutlet,
-    ResourceModule,
-    ButtonModule
+    ButtonModule,
+    ResourceModule
   ],
   providers: [
     RecipeService,

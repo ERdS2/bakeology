@@ -5,6 +5,17 @@
   list-style-type: none;
   flex-wrap: wrap;
 
+  .p-dialog-header{
+    display:none;
+  }
+  .p-dialog .p-dialog-footer {
+    text-align: center;
+    .p-button.p-button-sm {
+      padding: 0.429rem 1rem;
+      font-size: 1rem;
+    }
+  }
+
   .b-recipe-card{
     padding: 0.5rem;
     border-bottom: 1px solid black;

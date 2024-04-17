@@ -14,6 +14,8 @@ import {RecipeCardModule} from "../../feature/recipe-card/recipe-card.module";
 import {RecipeActionFactoryToken} from "./action/recipe.action-factory";
 import {RecipeActionFactoryImpl} from "./action/recipe.action.factory.impl";
 import {ToggleButtonModule} from "primeng/togglebutton";
+import {ConfirmationService} from "primeng/api";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 @NgModule({
   declarations: [
     AddRecipeComponent,
@@ -31,9 +33,10 @@ import {ToggleButtonModule} from "primeng/togglebutton";
     InputNumberModule,
     RecipeCardModule,
     ToggleButtonModule,
-
+    ConfirmDialogModule,
   ],
   providers: [
+    ConfirmationService,
     RecipeService,
     {provide: RecipeActionFactoryToken, useClass: RecipeActionFactoryImpl}
   ],

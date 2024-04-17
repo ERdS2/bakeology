@@ -23,5 +23,6 @@ export const resourcePackage: ResourcePackage = {
     "RECIPE_CARD.TIME_UNIT.HOUR": "ó",
     "RECIPE_CARD.TIME_UNIT.MINUTE": "p",
     "RECIPE_CARD.TEMPERATURE": "°C",
+    "RECIPE_CARD.DELETE.MESSAGE": "Biztosan törlöd ezt az elemet?"
   }
 }
