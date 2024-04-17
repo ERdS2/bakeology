@@ -1,9 +1,9 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import ResourceService, {ResourceServiceToken} from "../../../core/resource/service/resource.service";
-import {UnitEnum} from "../model/unit.enum";
+import {UnitEnum, UnitEnumValue, UnitEnumValuesToken} from "../model/unit.enum";
 import {RecipeCategoryConfig, UnitConfig} from "../../../app.config";
-import {RecipeCategoryEnum} from "../model/recipe-category.enum";
+import {RecipeCategoryEnum, RecipeCategoryEnumValue, RecipeCategoryEnumValuesToken} from "../model/recipe-category.enum";
 import {CommonUtils} from "../../../core/utils/common.utils";
 import {RecipeActionFactory, RecipeActionFactoryToken} from "../action/recipe.action-factory";
 import {debounceTime, Subscription} from "rxjs";
@@ -28,7 +28,7 @@ import {AddNewRecipeRequest} from "../../../../../mock/backend-api/model/addNewR
             </small>
           </div>
           <div class="category-input-container">
-            <p-dropdown class="recipe-category-dropdown" [options]="recipeCategoryOptions" formControlName="category"
+            <p-dropdown class="recipe-category-dropdown" [options]="recipeCategoryEnumValues" formControlName="category"
                         placeholder="{{'ADD_RECIPE.FIELD.CATEGORY.LABEL' | resolve}}"></p-dropdown>
             <small
               *ngIf="hasError('category')"
@@ -75,7 +75,7 @@ import {AddNewRecipeRequest} from "../../../../../mock/backend-api/model/addNewR
                 <p-inputNumber class="p-input" formControlName="amount"
                                placeholder="{{'ADD_RECIPE.FIELD.AMOUNT.LABEL' | resolve}}"/>
                 <div class="p-inputgroup-addon">
-                    <p-dropdown class="unit-dropdown" [options]="unitOptions" formControlName="unit"></p-dropdown>
+                    <p-dropdown class="unit-dropdown" [options]="unitEnumValues" formControlName="unit"></p-dropdown>
                 </div>
               </div>
               <i class=" pi pi-trash delete-ingridient-icon" (click)="deleteIngredient(i)"></i>
@@ -98,8 +98,8 @@ import {AddNewRecipeRequest} from "../../../../../mock/backend-api/model/addNewR
 export class AddRecipeComponent implements OnInit, OnDestroy{
   protected _resourceService: ResourceService;
   protected _formGroup: FormGroup;
-  protected _unitOptions: Array<UnitEnum>;
-  protected _recipeCategoryOptions: Array<RecipeCategoryEnum>;
+  protected _unitEnumValues: Array<UnitEnumValue>;
+  protected _recipeCategoryEnumValues: Array<RecipeCategoryEnumValue>;
   protected _recipeActionFactory: RecipeActionFactory;
   protected _formSubscription: Subscription;
   protected _stateSubscription: Subscription;
@@ -113,11 +113,14 @@ export class AddRecipeComponent implements OnInit, OnDestroy{
       resourceService: ResourceService,
     @Inject(RecipeActionFactoryToken)
       addRecipeActionFactory: RecipeActionFactory,
-
+    @Inject(UnitEnumValuesToken)
+      unitEnumValues: Array<UnitEnumValue>,
+    @Inject(RecipeCategoryEnumValuesToken)
+      recipeCategoryEnumValues: Array<RecipeCategoryEnumValue>,
   ) {
     this._resourceService = resourceService;
-    this._unitOptions = UnitConfig;
-    this._recipeCategoryOptions = RecipeCategoryConfig;
+    this._unitEnumValues = unitEnumValues;
+    this._recipeCategoryEnumValues = recipeCategoryEnumValues;
     this._recipeActionFactory = addRecipeActionFactory;
     this._stateSubscription = ngrxStore.select(selectRecipeListState).subscribe((state: RecipeState) => {
       if (state) {
@@ -151,7 +154,7 @@ export class AddRecipeComponent implements OnInit, OnDestroy{
     const ingredientForm = this.fb.group({
       name: ['', Validators.required],
       amount: [null],
-      unit: [this.unitOptions[0]]
+      unit: [this.unitEnumValues[0]]
     })
     this.ingredients.push(ingredientForm);
   }
@@ -177,11 +180,11 @@ export class AddRecipeComponent implements OnInit, OnDestroy{
   public get formGroup(): FormGroup {
     return this._formGroup;
   }
-  public get unitOptions(): Array<UnitEnum> {
-    return this._unitOptions;
+  public get unitEnumValues(): Array<any> {
+    return this._unitEnumValues;
   }
-  public get recipeCategoryOptions(): Array<RecipeCategoryEnum> {
-    return this._recipeCategoryOptions;
+  public get recipeCategoryEnumValues(): Array<any> {
+    return this._recipeCategoryEnumValues;
   }
 
   ngOnDestroy() {
