@@ -3,6 +3,7 @@ import {RecipeCategoryEnum} from "../../../src/app/component/recipe/model/recipe
 
 export interface NewRecipeModel {
   title?: string,
+  subTitle?: string,
   bakeParam?: BakeParam,
   ingredients?: Array<Ingredient>,
   category?: RecipeCategoryEnum

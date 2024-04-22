@@ -12,7 +12,7 @@ import {ResourceService, ResourceServiceToken} from "../../../core/resource/serv
   selector: "b-recipe-list",
   template: `
     <div class="b-recipe-list-container">
-      <p-confirmDialog></p-confirmDialog>
+      <p-confirmDialog class="delete-confirm-dialog"></p-confirmDialog>
       <b-recipe-card
           *ngFor="let recipe of recipeList"
           class="b-recipe-card"

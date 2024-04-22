@@ -1,7 +1,8 @@
 .b-add-recipe-container{
   border: 1px solid black;
   border-radius: 10px;
-  width: 28rem;
+  width: 32rem;
+  margin: 0 auto;
   .add-recipe-form{
     margin: 1rem;
     display: flex;
@@ -15,75 +16,86 @@
       left: 0;
     }
 
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      margin: 0;
-    }
-    .p-inputgroup-addon{
-      font-size: 1rem;
-      background-color: inherit;
-      color: #706666;
-      font-style: normal;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    .add-recipe-row{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
 
     .title-category-wrapper{
-      display: inline-flex;
-      gap: 1rem;
-      position: relative;
-
-      .favorite-icon-container{
-        .favorite-icon{
+      .title-input-container{
+        grid-area: 1/1/2/2;
+        .title-input-field{
+          width: 100%;
         }
       }
-      .title-input-container{
-        position: relative;
-      }
-      .category-input-container{
-        position: relative;
+
+      .category-favorite-wrapper{
+        grid-area: 1/2/2/3;
+        display: flex;
+        justify-content: space-between;
       }
     }
 
-    .bake-param-wrapper{
-      display: inline-flex;
+    .category-bake-param-wrapper{
+      display: grid;
+      grid-template-columns: 1fr 2fr;
       gap: 1rem;
-      padding-right: 2rem;
-      .time-container{
-        display: inline-flex;
-        gap: 0.5rem;
+      .input-error-container{
+        .recipe-category-dropdown{
+          .p-dropdown{
+            width: 100%;
+          }
+        }
+      }
+      .bake-param-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .bake-param-inputgroup{
+          max-width: 5.625rem;
+        }
+
+        .time-container{
+          display: flex;
+          justify-content: space-between;
+          gap: 1rem;
+        }
       }
     }
 
     .ingredients-wrapper {
 
       .ingredients-form {
-        display: inline-flex;
-        gap: 1rem;
-        margin-bottom: 1.2rem;
-
-        .ingredients-input-container{
-          position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr 0.8fr 0.2fr;
+        gap: 0.8rem;
+        margin-bottom: 0.5rem;
+        .ingredient-input{
+          width: 100%;
         }
         .p-inputgroup{
           .p-inputgroup-addon{
             padding: unset;
             .unit-dropdown{
               border: none;
-
+              padding-right: 0.1rem;
               .p-dropdown{
                 width: unset;
                 border: none;
                 background-color: inherit;
               }
+              .p-dropdown .p-dropdown-trigger {
+                width: 1.6rem;
+                padding-top: 0.2rem;
+              }
             }
           }
         }
 
-        .delete-ingridient-icon{
+        .delete-ingredient-icon{
           align-content: center;
+          margin: 0 auto;
         }
       }
       .add-ingredient-icon{
@@ -96,4 +108,19 @@
         cursor: pointer;
       }
     }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+  .p-inputgroup-addon{
+    font-size: 1rem;
+    background-color: inherit;
+    color: #706666;
+    font-style: normal;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
   }

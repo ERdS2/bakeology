@@ -1,9 +1,8 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import ResourceService, {ResourceServiceToken} from "../../../core/resource/service/resource.service";
-import {UnitEnum, UnitEnumValue, UnitEnumValuesToken} from "../model/unit.enum";
-import {RecipeCategoryConfig, UnitConfig} from "../../../app.config";
-import {RecipeCategoryEnum, RecipeCategoryEnumValue, RecipeCategoryEnumValuesToken} from "../model/recipe-category.enum";
+import {UnitEnumValue, UnitEnumValuesToken} from "../model/unit.enum";
+import { RecipeCategoryEnumValue, RecipeCategoryEnumValuesToken} from "../model/recipe-category.enum";
 import {CommonUtils} from "../../../core/utils/common.utils";
 import {RecipeActionFactory, RecipeActionFactoryToken} from "../action/recipe.action-factory";
 import {debounceTime, Subscription} from "rxjs";
@@ -17,45 +16,35 @@ import {AddNewRecipeRequest} from "../../../../../mock/backend-api/model/addNewR
   template: `
     <div class="b-add-recipe-container">
       <form [formGroup]="formGroup" id="addRecipeForm" class="add-recipe-form">
-        <span class="title-category-wrapper">
-          <div class="title-input-container">
-            <input class="p-input" id="addRecipeTitleField" pInputText
-                   placeholder="{{'ADD_RECIPE.FIELD.TITLE.LABEL' | resolve}}" formControlName="title"/>
-            <small
-              *ngIf="hasError('title')"
-              class="p-error add-recipe-form-error-message">
-              {{ "ADD_RECIPE.FIELD.ERROR.MESSAGE" | resolve }}
-            </small>
+        <span class="add-recipe-row title-category-wrapper">
+          <div class="input-error-container">
+            <input class="p-input title-input-field" pInputText placeholder="{{'ADD_RECIPE.FIELD.TITLE.LABEL' | resolve}}" formControlName="title"/>
+            <small *ngIf="hasError('title')" class="p-error add-recipe-form-error-message">{{ "ADD_RECIPE.FIELD.ERROR.MESSAGE" | resolve }}</small>
           </div>
-          <div class="category-input-container">
-            <p-dropdown class="recipe-category-dropdown" [options]="recipeCategoryEnumValues" formControlName="category"
-                        placeholder="{{'ADD_RECIPE.FIELD.CATEGORY.LABEL' | resolve}}"></p-dropdown>
-            <small
-              *ngIf="hasError('category')"
-              class="p-error add-recipe-form-error-message">
-              {{ "ADD_RECIPE.FIELD.ERROR.MESSAGE" | resolve }}
-            </small>
-          </div>
-          <div class="favorite-icon-container">
-            <p-toggleButton class="favorite-icon" onIcon="pi pi-heart-fill" offIcon="pi pi-heart"
-                            formControlName="favorite"></p-toggleButton>
-          </div>
+          <input class="p-input subtitle-input-field" pInputText  placeholder="{{'ADD_RECIPE.FIELD.SUBTITLE.LABEL' | resolve}}" formControlName="subTitle"/>
+          <p-toggleButton class="favorite-icon" onIcon="pi pi-heart-fill" offIcon="pi pi-heart" formControlName="favorite"></p-toggleButton>
         </span>
 
-        <span class="bake-param-wrapper" formGroupName="bakeParam">
-          <div formGroupName="time" class="time-container p-input">
-            <div class="p-input p-inputgroup hour-inputgroup">
-              <p-inputNumber class="hour-input time-input" formControlName="hour"/>
-              <i class="p-input p-inputgroup-addon">{{'ADD_RECIPE.FIELD.TIME.HOUR.LABEL' | resolve}}</i>
-            </div>
-            <div class="p-inputgroup minute-inputgroup">
-              <p-inputNumber class="p-input minute-input  time-input" formControlName="minute"/>
-              <i class="p-inputgroup-addon">{{'ADD_RECIPE.FIELD.TIME.MINUTE.LABEL' | resolve}}</i>
-            </div>
+        <span class="category-bake-param-wrapper">
+          <div class="input-error-container">
+            <p-dropdown class="recipe-category-dropdown" [options]="recipeCategoryEnumValues" formControlName="category" placeholder="{{'ADD_RECIPE.FIELD.CATEGORY.LABEL' | resolve}}"></p-dropdown>
+            <small *ngIf="hasError('category')" class="p-error add-recipe-form-error-message">{{ "ADD_RECIPE.FIELD.ERROR.MESSAGE" | resolve }}</small>
           </div>
-          <div class="p-inputgroup temperature-inputgroup">
-            <p-inputNumber class="p-input" id="add-recipe-temperature-field" formControlName="temperature"/>
-            <i class="p-inputgroup-addon">{{'ADD_RECIPE.FIELD.TEMPERATURE.LABEL' | resolve}}</i>
+          <div class="bake-param-container" formGroupName="bakeParam">
+            <div formGroupName="time" class="time-container p-input">
+              <div class="p-input p-inputgroup bake-param-inputgroup">
+                <p-inputNumber class="hour-input time-input" formControlName="hour"/>
+                <i class="p-input p-inputgroup-addon">{{'ADD_RECIPE.FIELD.TIME.HOUR.LABEL' | resolve}}</i>
+              </div>
+              <div class="p-inputgroup bake-param-inputgroup">
+                <p-inputNumber class="p-input minute-input  time-input" formControlName="minute"/>
+                <i class="p-inputgroup-addon">{{'ADD_RECIPE.FIELD.TIME.MINUTE.LABEL' | resolve}}</i>
+              </div>
+            </div>
+            <div class="p-inputgroup bake-param-inputgroup">
+              <p-inputNumber class="p-input" id="add-recipe-temperature-field" formControlName="temperature"/>
+              <i class="p-inputgroup-addon">{{'ADD_RECIPE.FIELD.TEMPERATURE.LABEL' | resolve}}</i>
+            </div>
           </div>
         </span>
 
@@ -63,7 +52,7 @@ import {AddNewRecipeRequest} from "../../../../../mock/backend-api/model/addNewR
           <div *ngFor="let ingredientsForm of ingredients.controls; let i = index">
             <div class="ingredients-form" formGroupName="{{i}}">
               <div class="ingredients-input-container">
-                <input class="p-input" id="add-recipe-name-field" pInputText
+                <input class="p-input ingredient-input" id="add-recipe-name-field" pInputText
                        placeholder="{{'ADD_RECIPE.FIELD.INGREDIENTS.LABEL' | resolve}}" formControlName="name"/>
                 <small
                   *ngIf="hasError('ingredients')"
@@ -72,13 +61,13 @@ import {AddNewRecipeRequest} from "../../../../../mock/backend-api/model/addNewR
                 </small>
               </div>
               <div class="unit-wrapper p-inputgroup">
-                <p-inputNumber class="p-input" formControlName="amount"
-                               placeholder="{{'ADD_RECIPE.FIELD.AMOUNT.LABEL' | resolve}}"/>
+                <p-inputNumber class="p-input" formControlName="amount" placeholder="{{'ADD_RECIPE.FIELD.AMOUNT.LABEL' | resolve}}"/>
                 <div class="p-inputgroup-addon">
                     <p-dropdown class="unit-dropdown" [options]="unitEnumValues" formControlName="unit"></p-dropdown>
                 </div>
               </div>
-              <i class=" pi pi-trash delete-ingridient-icon" (click)="deleteIngredient(i)"></i>
+              <input class="p-input ingredient-input" placeholder="{{'ADD_RECIPE.FIELD.INGREDIENTS.DETAILS' | resolve}}" pInputText type="text" formControlName="detail">
+              <i class=" pi pi-trash delete-ingredient-icon" (click)="deleteIngredient(i)"></i>
             </div>
           </div>
           <i class="pi pi-plus-circle add-ingredient-icon" (click)="addIngredient()"></i>
@@ -131,6 +120,7 @@ export class AddRecipeComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this._formGroup = this.fb.group({
       title: ['', Validators.required],
+      subTitle: ['', Validators.required],
       category: ['', Validators.required],
       favorite: [false],
       bakeParam: this.fb.group({
@@ -154,7 +144,8 @@ export class AddRecipeComponent implements OnInit, OnDestroy{
     const ingredientForm = this.fb.group({
       name: ['', Validators.required],
       amount: [null],
-      unit: [this.unitEnumValues[0]]
+      unit: [this.unitEnumValues[0].value],
+      detail: ['']
     })
     this.ingredients.push(ingredientForm);
   }

@@ -57,6 +57,7 @@ export function recipeReducer (state: RecipeState, action: CoreAction<any>): Rec
   function recipeFormChange(originalState: RecipeState, request: AddNewRecipeRequest): RecipeState {
     let recipe: NewRecipeModel = {
       title: request.title,
+      subTitle: request.subTitle,
       bakeParam: {
         time: {
           hour: request.bakeParam.time.hour ? request.bakeParam.time.hour : null,
@@ -93,6 +94,7 @@ export function recipeReducer (state: RecipeState, action: CoreAction<any>): Rec
   function clearNewRecipeFormState(): NewRecipeModel {
     return {
       title: "",
+      subTitle: "",
       bakeParam: {
         time: {
           hour: null,

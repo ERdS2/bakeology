@@ -1,6 +1,7 @@
 export interface Recipe {
   id: number,
   title: string,
+  subTitle: string,
   category: string,
   bakeParam: BakeParam,
   ingredients: Array<Ingredient>
@@ -11,6 +12,7 @@ export  interface Ingredient{
   name: string,
   amount: number,
   unit: string
+  detail: string
 }
 export interface BakeParam{
   temperature?: number,

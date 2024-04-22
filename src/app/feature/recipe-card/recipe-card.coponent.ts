@@ -2,8 +2,7 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Recipe} from "../../../../mock/backend-api/model/recipe.model";
 
 @Component({
-  selector: "" +
-    "b-recipe-card",
+  selector: "b-recipe-card",
   template: `
                 <div class="recipe-card">
                   <div class="recipe-card-title-button-container">
@@ -22,10 +21,15 @@ import {Recipe} from "../../../../mock/backend-api/model/recipe.model";
                     </div>
                   </div>
 
+                  <h4 *ngIf="recipe.subTitle" class="recipe-card-subtitle">({{recipe.subTitle}})</h4>
+
                   <ul class="recipe-card-ingredient-wrapper" *ngFor="let item of ingredients">
-                     <li class="recipe-ingredient-amount"> {{item.amount}} </li>
-                     <li class="recipe-ingredient-unit"> {{ item.unit }} </li>
-                     <li class="recipe-ingredient-name"> {{ item.name }} </li>
+                    <div class="recipe-card-ingredient-list">
+                     <li class="recipe-ingredient-amount">{{item.amount}}</li>
+                     <li class="recipe-ingredient-unit">{{ item.unit }}</li>
+                     <li class="recipe-ingredient-name">{{ item.name }}</li>
+                    </div>
+                     <li class="recipe-ingredient-detail">{{ item.detail }}</li>
                   </ul>
                 </div>
     `

@@ -1,21 +1,5 @@
 .recipe-card{
 
-  .recipe-card-ingredient-wrapper{
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    margin: 0.5rem 0.3rem;
-    list-style: none;
-    padding-inline-start: 0;
-
-    .recipe-ingredient-unit{
-      width: 16px;
-    }
-    .recipe-ingredient-amount{
-      width: 32px;
-    }
-  }
-
   .recipe-card-title-button-container{
     display: flex;
     flex-direction: row;
@@ -25,6 +9,7 @@
 
     .recipe-card-title{
       min-width: 8.75rem;
+      margin: 0;
     }
 
     .temperature-field{
@@ -49,14 +34,36 @@
       }
       .add-favorite-icon{
         cursor: pointer;
+        color: #E64C3D;
       }
     }
   }
-
-  .recipe-card-title{
+  .recipe-card-subtitle{
     margin: 0;
+    padding-left: 0.5rem;
+    font-weight: normal;
   }
-  .recipe-card-list-item-wrapper{
-    padding: 0 0 0 20px;
+  .recipe-card-ingredient-wrapper{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    list-style: none;
+    margin: 0.5rem 0.3rem;
+    padding-inline-start: 0;
+    .recipe-card-ingredient-list{
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+
+      .recipe-ingredient-unit{
+        width: 16px;
+      }
+      .recipe-ingredient-amount{
+        width: 32px;
+      }
+    }
+      .recipe-ingredient-detail{
+        font-size: small;
+        color: #515050;
+      }
   }
 }

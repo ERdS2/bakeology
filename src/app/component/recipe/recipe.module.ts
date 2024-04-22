@@ -18,6 +18,7 @@ import {ConfirmationService} from "primeng/api";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {UnitEnum, UnitEnumValue, UnitEnumValuesToken} from "./model/unit.enum";
 import {RecipeCategoryEnum, RecipeCategoryEnumValue, RecipeCategoryEnumValuesToken} from "./model/recipe-category.enum";
+import {FieldsetModule} from "primeng/fieldset";
 
 function initRecipeCategoryEnumValues(resourceService: ResourceService): RecipeCategoryEnumValue[] {
   return Object.keys(RecipeCategoryEnum).map(key => ({ label: resourceService.resolve("ADD_RECIPE.FIELD.CATEGORY." + RecipeCategoryEnum[key]), value: RecipeCategoryEnum[key] }));
@@ -44,6 +45,7 @@ function initUnitEnumValues(resourceService: ResourceService): UnitEnumValue[] {
     RecipeCardModule,
     ToggleButtonModule,
     ConfirmDialogModule,
+    FieldsetModule,
   ],
   providers: [
     ConfirmationService,

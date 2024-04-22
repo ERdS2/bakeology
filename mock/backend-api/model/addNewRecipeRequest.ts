@@ -3,6 +3,7 @@ import {UnitEnum} from "../../../src/app/component/recipe/model/unit.enum";
 
 export interface AddNewRecipeRequest {
   title?: string,
+  subTitle?: string,
   bakeParam?: BakeParam,
   ingredients?: Array<Ingredient>,
   category?: RecipeCategoryEnum
