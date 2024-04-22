@@ -5,23 +5,23 @@ import {Recipe} from "../../../../mock/backend-api/model/recipe.model";
   selector: "b-recipe-card",
   template: `
                 <div class="recipe-card">
+
                   <div class="recipe-card-title-button-container">
-                    <h2 class="recipe-card-title">{{recipe.title}}</h2>
-                      <img class="recipe-card-button-img"
-                           [id]="'recipe-card-img'"
-                           [src]="''"/>
-                    <p *ngIf="recipe.bakeParam?.temperature" class="temperature-field">{{recipe.bakeParam.temperature}}{{"RECIPE_CARD.TEMPERATURE" | resolve}}</p>
-                    <div class="time-wrapper">
-                      <p *ngIf="recipe.bakeParam?.time.hour" class="time-field">{{recipe.bakeParam.time.hour}}{{"RECIPE_CARD.TIME_UNIT.HOUR" | resolve}}</p>
-                      <p *ngIf="recipe.bakeParam?.time.minute" class="time-field">{{recipe.bakeParam.time.minute}}{{"RECIPE_CARD.TIME_UNIT.MINUTE" | resolve}}</p>
-                    </div>
-                    <div class="fav-delete-button-wrapper">
-                      <i [ngClass]="{'pi-heart': !recipe.favorite, 'pi-heart-fill': recipe.favorite}" class="pi add-favorite-icon" (click)="addRecipeToFavorite()"></i>
-                      <i class="pi pi-trash delete-ingredient-icon" (click)="deleteRecipe()"></i>
+                    <p class="recipe-card-title">{{recipe.title}}</p>
+                    <div class="recipe-card-title-details">
+                      <p *ngIf="recipe.bakeParam?.temperature" class="temperature-field">{{recipe.bakeParam.temperature}}{{"RECIPE_CARD.TEMPERATURE" | resolve}}</p>
+                      <div class="time-wrapper">
+                        <p *ngIf="recipe.bakeParam?.time.hour" class="time-field">{{recipe.bakeParam.time.hour}}{{"RECIPE_CARD.TIME_UNIT.HOUR" | resolve}}</p>
+                        <p *ngIf="recipe.bakeParam?.time.minute" class="time-field">{{recipe.bakeParam.time.minute}}{{"RECIPE_CARD.TIME_UNIT.MINUTE" | resolve}}</p>
+                      </div>
+                      <div class="fav-delete-button-wrapper">
+                        <i [ngClass]="{'pi-heart': !recipe.favorite, 'pi-heart-fill': recipe.favorite}" class="pi add-favorite-icon" (click)="addRecipeToFavorite()"></i>
+                        <i class="pi pi-trash delete-ingredient-icon" (click)="deleteRecipe()"></i>
+                      </div>
                     </div>
                   </div>
 
-                  <h4 *ngIf="recipe.subTitle" class="recipe-card-subtitle">({{recipe.subTitle}})</h4>
+                  <p *ngIf="recipe.subTitle" class="recipe-card-subtitle">({{recipe.subTitle}})</p>
 
                   <ul class="recipe-card-ingredient-wrapper" *ngFor="let item of ingredients">
                     <div class="recipe-card-ingredient-list">
@@ -64,6 +64,10 @@ export class RecipeCardComponent {
     return this._recipe;
   }
   public get ingredients() {
-    return this._recipe.ingredients;
+    let topIngredients = []
+    for(let i = 0;i < 5; i++){
+      if(this._recipe.ingredients[i]){topIngredients.push(this._recipe.ingredients[i])}
+    }
+    return topIngredients;
   }
 }
