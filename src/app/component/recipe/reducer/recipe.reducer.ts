@@ -3,7 +3,7 @@ import {CommonUtils} from "../../../core/utils/common.utils";
 import {GetRecipeListResponse} from "../../../../../mock/backend-api/model/getRecipeListResponse";
 import {
   RECEIVE_RECIPE_ADD_FAVORITE, RECEIVE_RECIPE_DELETE,
-  RECEIVE_RECIPE_LIST, RECIPE_FORM_CHANGE,
+  RECEIVE_RECIPE_LIST, RECIPE_FORM_CHANGE, SELECTED_RECIPE,
 } from "../action/recipe.action-factory";
 import {NewRecipeModel} from "../../../../../mock/backend-api/model/new-recipe.model";
 import {RecipeState} from "../model/recipe.state.model";
@@ -14,6 +14,7 @@ export function recipeReducer (state: RecipeState, action: CoreAction<any>): Rec
   if (!state) {
     state = {
        recipeList: [],
+       selectedRecipe: null,
        newRecipeFormRequest: clearNewRecipeFormState()
     }
   }
@@ -27,6 +28,8 @@ export function recipeReducer (state: RecipeState, action: CoreAction<any>): Rec
       return receiveReceiveRecipeDelete(state, action.payload);
     case RECIPE_FORM_CHANGE:
       return recipeFormChange(state, action.payload);
+    case SELECTED_RECIPE:
+      return selectedRecipe(state, action.payload);
 
     default:
       return state;
@@ -87,6 +90,17 @@ export function recipeReducer (state: RecipeState, action: CoreAction<any>): Rec
     return changeState(originalState, changes);
   }
 
+  // Open recipe
+
+  function selectedRecipe(originalState: RecipeState, recipe: Recipe): RecipeState{
+    let selectedRecipe: Recipe = CommonUtils.clone(recipe)
+    let changes: RecipeState = {
+      selectedRecipe: selectedRecipe,
+    };
+
+    return changeState(originalState, changes);
+  }
+
   function changeState(originalState: RecipeState, changes: RecipeState): RecipeState {
     return Object.assign({}, originalState, changes);
   }
@@ -104,7 +118,7 @@ export function recipeReducer (state: RecipeState, action: CoreAction<any>): Rec
       },
       ingredients: [],
       category: null,
-      favorite: false
+      favorite: false,
     };
   }
 }

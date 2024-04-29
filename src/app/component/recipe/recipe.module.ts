@@ -19,6 +19,8 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {UnitEnum, UnitEnumValue, UnitEnumValuesToken} from "./model/unit.enum";
 import {RecipeCategoryEnum, RecipeCategoryEnumValue, RecipeCategoryEnumValuesToken} from "./model/recipe-category.enum";
 import {FieldsetModule} from "primeng/fieldset";
+import {RecipeDetailsComponent} from "./component/recipe-details.component";
+import {EditorModule} from "primeng/editor";
 
 function initRecipeCategoryEnumValues(resourceService: ResourceService): RecipeCategoryEnumValue[] {
   return Object.keys(RecipeCategoryEnum).map(key => ({ label: resourceService.resolve("ADD_RECIPE.FIELD.CATEGORY." + RecipeCategoryEnum[key]), value: RecipeCategoryEnum[key] }));
@@ -30,7 +32,8 @@ function initUnitEnumValues(resourceService: ResourceService): UnitEnumValue[] {
 @NgModule({
   declarations: [
     AddRecipeComponent,
-    RecipeListComponent
+    RecipeListComponent,
+    RecipeDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -46,6 +49,7 @@ function initUnitEnumValues(resourceService: ResourceService): UnitEnumValue[] {
     ToggleButtonModule,
     ConfirmDialogModule,
     FieldsetModule,
+    EditorModule
   ],
   providers: [
     ConfirmationService,
@@ -57,6 +61,7 @@ function initUnitEnumValues(resourceService: ResourceService): UnitEnumValue[] {
   ],
   exports: [
     RecipeListComponent,
+    RecipeDetailsComponent
   ]
 })
 export class RecipeModule { }

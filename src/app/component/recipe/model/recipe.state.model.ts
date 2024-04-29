@@ -6,6 +6,7 @@ export const RECIPE_STATE_NAME: string = "recipe";
 
 export interface RecipeState {
   recipeList?: Array<Recipe>;
+  selectedRecipe?: Recipe;
   newRecipeFormRequest?: NewRecipeModel;
 
 }

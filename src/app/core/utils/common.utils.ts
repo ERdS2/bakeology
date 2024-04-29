@@ -1,6 +1,7 @@
 
 import {Subscription} from "rxjs";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
 
 export class CommonUtils {
 
@@ -55,6 +56,24 @@ export class CommonUtils {
       return (char === "x" ? rand : (rand & 0x3 | 0x8)).toString(16);
     });
     return uuid;
+  }
+
+  /**
+   * A kapott url string alapján eldönti, hogy belső oldalra kell navigálni (pl: "/bejelentkezes") vagy külső oldalra (pl: "http://valami.hu")
+   * @param {Router} router Router példány
+   * @param {string} url betöltendő oldal
+   */
+  public static navigatePageOrUrl(router: Router, url: string): void {
+    if (!router || !url) {
+      return;
+    }
+
+    if (url.startsWith("http")) {
+      window.location.href = url;
+      return;
+    }
+
+    router.navigate([url]);
   }
 
 }

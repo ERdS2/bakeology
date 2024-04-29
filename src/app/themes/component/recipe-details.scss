@@ -1,29 +1,26 @@
-.recipe-card{
-  padding: 0.5rem;
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
-  border-bottom-left-radius: 1rem;
-  height: fit-content;
-  min-width: 23rem;
-  max-width: 23rem;
-  max-height: 20rem;
+.recipe-details-container{
+  margin: 0 auto;
+  width: 50rem;
+  padding: 2rem;
+  border: 1px solid black;
+  border-radius: 10px;
   .recipe-card-title-button-container{
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    align-items: baseline;
-
 
     .recipe-card-title-details{
       display: flex;
       flex-direction: row;
-      gap: 1rem;
-      justify-content: flex-end;
+      gap: 1.5rem;
+      font-size: x-large;
+      align-items: baseline;
     }
 
     .recipe-card-title{
       margin: 0;
-      font-size: x-large;
+      font-size: xx-large;
       font-weight: bold;
     }
 
@@ -42,31 +39,31 @@
     .fav-delete-button-wrapper{
       display: flex;
       flex-direction: row;
-      gap: 0.7rem;
+      gap: 1rem;
       align-items: center;
 
       .delete-ingredient-icon{
         cursor: pointer;
+        font-size: 20px;
       }
       .add-favorite-icon{
         cursor: pointer;
         color: #E64C3D;
+        font-size: 20px;
+
       }
     }
   }
-
   .recipe-card-subtitle{
     margin: 0.2rem 0 0.7rem;
-    padding-left: 0.6rem;
+    padding-left: 2rem;
     font-weight: normal;
   }
-
   .recipe-card-body-container{
-    display: grid;
-    grid-template-columns: 94% 6%;
+    padding: 1rem 0.5rem;
     .recipe-card-ingredient-wrapper{
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1fr 2fr;
       list-style: none;
       margin: 0.5rem 0.3rem;
       padding-inline-start: 0;
@@ -74,7 +71,9 @@
         display: flex;
         flex-direction: row;
         gap: 1rem;
-
+        li{
+          text-align: right;
+        }
         .recipe-ingredient-unit{
           width: 16px;
         }
@@ -82,10 +81,10 @@
           width: 32px;
         }
       }
-        .recipe-ingredient-detail{
-          font-size: small;
-          color: #515050;
-        }
+      .recipe-ingredient-detail{
+        font-size: small;
+        color: #515050;
+      }
     }
 
     .open-recipe-button-wrapper{
@@ -99,4 +98,11 @@
       }
     }
   }
+  .recipe-note-wrapper{
+    .recipe-note-editor{
+      width: 100%;
+      height: fit-content;
+    }
+  }
 }
+

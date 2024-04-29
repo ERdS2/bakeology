@@ -7,7 +7,7 @@ import {
   RECEIVE_RECIPE_ADD_FAVORITE,
   RECEIVE_RECIPE_DELETE, RECEIVE_RECIPE_LIST, RECIPE_FORM_CHANGE, RecipeActionFactory, REQUEST_NEW_RECIPE_SAVE,
   REQUEST_RECIPE_ADD_FAVORITE,
-  REQUEST_RECIPE_DELETE, REQUEST_RECIPE_LIST,
+  REQUEST_RECIPE_DELETE, REQUEST_RECIPE_LIST, SELECTED_RECIPE,
 } from "./recipe.action-factory";
 import {Recipe} from "../../../../../mock/backend-api/model/recipe.model";
 import {CoreAction} from "../../../core/state/model/core.action.model";
@@ -219,4 +219,17 @@ export class RecipeActionFactoryImpl implements RecipeActionFactory {
       payload: response
     };
   }
+
+  // Open recipe
+  public openRecipe(recipe: Recipe): void {
+    this._ngrxStore.dispatch(this.getRecipeOpen(recipe));
+  }
+
+  protected getRecipeOpen(recipe: Recipe): CoreAction<Recipe> {
+    return {
+      type: SELECTED_RECIPE,
+      payload: recipe
+    };
+  }
+
 }

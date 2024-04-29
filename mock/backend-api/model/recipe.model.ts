@@ -4,8 +4,9 @@ export interface Recipe {
   subTitle: string,
   category: string,
   bakeParam: BakeParam,
-  ingredients: Array<Ingredient>
-  favorite: boolean
+  ingredients: Array<Ingredient>,
+  favorite: boolean,
+  note: string
 }
 
 export  interface Ingredient{

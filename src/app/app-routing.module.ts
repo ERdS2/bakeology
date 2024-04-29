@@ -7,6 +7,7 @@ import {RecipeListMousseResolve} from "./component/recipe/resolve/recipe-list-mo
 import {RecipeListTuileResolve} from "./component/recipe/resolve/recipe-list-tuile.resolve";
 import {RecipeListSableResolve} from "./component/recipe/resolve/recipe-list-sable.resolve";
 import {RecipeModule} from "./component/recipe/recipe.module";
+import {RecipeDetailsComponent} from "./component/recipe/component/recipe-details.component";
 
 const routes: Routes = [
   {
@@ -37,9 +38,10 @@ const routes: Routes = [
       {
         path: "add-recipe",
         component: AddRecipeComponent,
-        resolve: {
-
-        }
+      },
+      {
+        path: "recipe-details",
+        component: RecipeDetailsComponent
       }
     ]
   },

@@ -2,6 +2,8 @@ import {MenuConfig, MenuItem} from "./component/menu/model/menu.model";
 import {UnitEnum} from "./component/recipe/model/unit.enum";
 import {RecipeCategoryEnum} from "./component/recipe/model/recipe-category.enum";
 
+export const RECIPE_DETAILS_URL: string = "/recipe-details";
+
 const menuItemList: MenuItem[] = [
   {
     titleKey: "HEADER.MENU.TITLE.MOUSSE",

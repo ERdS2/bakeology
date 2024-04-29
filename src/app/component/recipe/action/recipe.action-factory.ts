@@ -15,6 +15,7 @@ export const RECEIVE_NEW_RECIPE_SAVE: string = "RECEIVE_NEW_RECIPE_SAVE";
 export const REQUEST_RECIPE_LIST: string = "REQUEST_RECIPE_LIST";
 export const RECEIVE_RECIPE_LIST: string = "RECEIVE_RECIPE_LIST";
 export const RECIPE_FORM_CHANGE: string = "RECIPE_FORM_CHANGE";
+export const SELECTED_RECIPE: string = "SELECTED_RECIPE";
 
 
 export const RecipeActionFactoryToken: InjectionToken<RecipeActionFactory> = new InjectionToken<RecipeActionFactory>("recipe.action.factory");
@@ -25,5 +26,6 @@ export interface RecipeActionFactory {
   saveNewRecipe(newRecipe: AddNewRecipeRequest): Observable<Recipe>;
   getRecipeList(request: GetRecipeListRequest): Observable<GetRecipeListResponse>;
   changeRecipeForm(request: NewRecipeModel): void;
+  openRecipe(recipe: Recipe): void;
 
 }

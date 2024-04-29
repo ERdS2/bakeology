@@ -7,6 +7,8 @@ import {RecipeActionFactory, RecipeActionFactoryToken} from "../action/recipe.ac
 import {RecipeState, selectRecipeListState} from "../model/recipe.state.model";
 import {ConfirmationService} from "primeng/api";
 import {ResourceService, ResourceServiceToken} from "../../../core/resource/service/resource.service";
+import {Router} from "@angular/router";
+import {RECIPE_DETAILS_URL} from "../../../app.config";
 
 @Component({
   selector: "b-recipe-list",
@@ -17,13 +19,13 @@ import {ResourceService, ResourceServiceToken} from "../../../core/resource/serv
           *ngFor="let recipe of recipeList"
           class="b-recipe-card"
           [recipe]="recipe"
-          (addFavoriteEvent)="addRecipeToFavorite($event)"
-          (deleteRecipeEvent)="deleteRecipe($event)">
+          (openRecipeEvent)="openRecipe($event)">
         </b-recipe-card>
     </div>
   `
 })
 export class RecipeListComponent implements  OnDestroy{
+  protected _router: Router;
   protected _recipeList: Array<Recipe> = [];
   protected _recipeActionFactory: RecipeActionFactory;
   protected _stateSubscription: Subscription;
@@ -36,9 +38,11 @@ export class RecipeListComponent implements  OnDestroy{
     ngrxStore: Store<any>,
     @Inject(RecipeActionFactoryToken)
     recipeListActionFactory: RecipeActionFactory,
+    router: Router,
   ) {
     this._recipeActionFactory = recipeListActionFactory;
     this._resourceService = resourceService;
+    this._router = router;
 
     this._stateSubscription = ngrxStore.select(selectRecipeListState).subscribe((state: RecipeState) => {
       if (state) {
@@ -51,22 +55,10 @@ export class RecipeListComponent implements  OnDestroy{
     return this._recipeList;
   }
 
-  addRecipeToFavorite(recipe: Recipe) {
-    let newRecipe: Recipe = CommonUtils.clone(this._recipeList).find((item: Recipe) => item.id === recipe.id);
-    newRecipe.favorite = !newRecipe.favorite;
-    this._recipeActionFactory.addRecipeToFavorite(newRecipe).subscribe();
-  }
 
-  deleteRecipe(recipe: Recipe) {
-    this.confirmationService.confirm({
-      message: this._resourceService.resolve("RECIPE_CARD.DELETE.MESSAGE"),
-      acceptButtonStyleClass: 'p-button-danger p-button-sm',
-      accept: () => {
-        this._recipeActionFactory.deleteRecipe(recipe).subscribe();
-        },
-      reject: () => {
-      }
-    });
+  openRecipe(recipe: Recipe): void{
+    this._recipeActionFactory.openRecipe(recipe);
+    CommonUtils.navigatePageOrUrl(this._router, RECIPE_DETAILS_URL)
   }
 
   ngOnDestroy(): void {
